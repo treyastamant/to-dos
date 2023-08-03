@@ -10,3 +10,11 @@ console.log('index.js');
 //View all to-dos in each project
 //View to-do details
 //Delete a to-do
+
+const createProject = (name) => {
+
+}
+
+const createTodo = (name, description, date, priority, projectName) => {
+
+}

@@ -12,7 +12,28 @@
   <h1>To-do's</h1>
   <h3>Manage Your Life</h3>
 
-  <form action="" class="new-todo"></form>
+  <form class="new-todo">
+    <div>
+      <label for="name">Name</label>
+      <input type="text" name="name" id="name">
+    </div>
+    <div>
+      <label for="description">Description</label>
+      <input type="text" name="description" id="description">
+    </div>
+    <div>
+      <label for="date">Date</label>
+      <input type="date" name="date" id="date">
+    </div>
+    <div>
+      <label for="priority">Priority</label>
+      <select name="priority" id="priority">
+        <option value="low">Low</option>
+        <option value="medium">Medium</option>
+        <option value="high">High</option>
+      </select>
+    </div>
+  </form>
 
 </body>
 </html>
