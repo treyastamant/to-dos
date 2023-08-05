@@ -1,17 +1,36 @@
+@media only screen and (max-width: 600px) {
+  .add-buttons {
+    display: grid;
+    grid-template-columns: 1fr;
+    justify-content: center;
+  }
+
+  .form-container {
+    width: 95%;
+    display: grid;
+    row-gap: 10px;
+    border-radius: 10px;
+    margin-top: 30px;
+  }
+  
+}
+
+body {
+  font-family: 'Nunito', sans-serif;
+}
+
 h1, h2 {
-  /* margin: 5px auto; */
+  margin: 0px auto;
   text-align: center;
 }
 
 .form-container {
   background-color: #f7f7f7;
-  /* padding: 0px 20px 20px; */
   width: 500px;
   margin: auto;
   display: grid;
   row-gap: 10px;
   border-radius: 10px;
-  margin-top: 30px;
 }
 
 .form-container * {
@@ -53,9 +72,9 @@ form select, form input {
 
 .add-buttons {
   display: grid;
-  grid-template-columns: 1fr 1fr;
-  width: 60%;
-  margin: auto;
+  grid-template-columns: auto auto;
+  margin: 20px auto;
+  justify-content: center;
 }
 
 
@@ -72,5 +91,6 @@ button, .submit {
 
 .hidden {
   display: none;
-  /* background-color: white; */
 }
+
+

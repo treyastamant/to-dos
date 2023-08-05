@@ -6,14 +6,19 @@
   <title>To-do's: Manage Your Life</title>
   <script defer src="main.js"></script>
   <link rel="stylesheet" href="style.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Nunito:wght@200;400;500;700&display=swap" rel="stylesheet">
 </head>
 <body>
 
   <h1>To-do's</h1>
   <h2>Manage Your Life</h2>
 
-  <button class="add-todo">Add To-do</button>
-  <button class="add-project">Create Project</button>
+  <div class="add-buttons">
+    <button class="add-todo">Add To-do</button>
+    <button class="add-project">Create Project</button>
+  </div>
 
   <div class="form-container hidden">
     <h3 id="form-message"></h3>
@@ -43,7 +48,8 @@
         <select name="project" id="project">
         </select>
       </div>
-      <button class="submit">Add</button>
+      <button class="todo-btn submit">Add To-do</button>
+      <button class="project-btn submit">Create Project</button>
     </form>
   </div>
 
