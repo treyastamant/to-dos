@@ -10,30 +10,42 @@
 <body>
 
   <h1>To-do's</h1>
-  <h3>Manage Your Life</h3>
+  <h2>Manage Your Life</h2>
 
-  <form class="new-todo">
-    <div>
-      <label for="name">Name</label>
-      <input type="text" name="name" id="name">
-    </div>
-    <div>
-      <label for="description">Description</label>
-      <input type="text" name="description" id="description">
-    </div>
-    <div>
-      <label for="date">Date</label>
-      <input type="date" name="date" id="date">
-    </div>
-    <div>
-      <label for="priority">Priority</label>
-      <select name="priority" id="priority">
-        <option value="low">Low</option>
-        <option value="medium">Medium</option>
-        <option value="high">High</option>
-      </select>
-    </div>
-  </form>
+  <button class="add-todo">Add To-do</button>
+  <button class="add-project">Create Project</button>
+
+  <div class="form-container hidden">
+    <h3 id="form-message"></h3>
+    <form class="new-entry">
+      <div class="name">
+        <label for="name">Name</label>
+        <input type="text" name="name" id="name">
+      </div>
+      <div class="description">
+        <label for="description">Description</label>
+        <input type="text" name="description" id="description">
+      </div>
+      <div class="date">
+        <label for="date">Date</label>
+        <input type="date" name="date" id="date">
+      </div>
+      <div class="priority">
+        <label for="priority">Priority</label>
+        <select name="priority" id="priority">
+          <option value="low">Low</option>
+          <option value="medium">Medium</option>
+          <option value="high">High</option>
+        </select>
+      </div>
+      <div class="project-select">
+        <label for="project">Project</label>
+        <select name="project" id="project">
+        </select>
+      </div>
+      <button class="submit">Add</button>
+    </form>
+  </div>
 
 </body>
 </html>
