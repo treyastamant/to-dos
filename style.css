@@ -1,0 +1,76 @@
+h1, h2 {
+  /* margin: 5px auto; */
+  text-align: center;
+}
+
+.form-container {
+  background-color: #f7f7f7;
+  /* padding: 0px 20px 20px; */
+  width: 500px;
+  margin: auto;
+  display: grid;
+  row-gap: 10px;
+  border-radius: 10px;
+  margin-top: 30px;
+}
+
+.form-container * {
+  margin: 0;
+  padding: 0;
+}
+
+#form-message {
+  font-size: 24px;
+  text-align: center;
+  background-color: #808000;
+  color: white;
+  padding: 8px;
+  border-radius: 10px 10px 0 0;
+}
+
+form {
+  display: grid;
+  row-gap: 15px;
+}
+
+.name, .description {
+  display: grid;
+  row-gap: 2px;
+  padding: 0 20px;
+}
+
+.date, .priority, .project-select {
+  display: grid;
+  grid-template-columns: 80px 150px;
+  padding: 0 20px;
+}
+
+form select, form input {
+  padding: 10px;
+  text-indent: 3px;
+  height: 25px;
+}
+
+.add-buttons {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  width: 60%;
+  margin: auto;
+}
+
+
+button, .submit {
+  margin: 10px 20px 20px;
+  padding: 10px 50px;
+  width: auto;
+  justify-self: center;
+  background-color: #808000;
+  color: white;
+  border: none;
+  border-radius: 10px;
+}
+
+.hidden {
+  display: none;
+  /* background-color: white; */
+}
