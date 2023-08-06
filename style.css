@@ -1,19 +1,4 @@
-@media only screen and (max-width: 600px) {
-  .add-buttons {
-    display: grid;
-    grid-template-columns: 1fr;
-    justify-content: center;
-  }
 
-  .form-container {
-    width: 95%;
-    display: grid;
-    row-gap: 10px;
-    border-radius: 10px;
-    margin-top: 30px;
-  }
-  
-}
 
 body {
   font-family: 'Nunito', sans-serif;
@@ -93,4 +78,22 @@ button, .submit {
   display: none;
 }
 
+@media only screen and (max-width: 600px) {
+  .add-buttons {
+    display: grid;
+    grid-template-columns: 1fr;
+    justify-content: center;
+  }
 
+  .form-container {
+    width: 95%;
+    display: grid;
+    row-gap: 10px;
+    border-radius: 10px;
+    margin-top: 30px;
+  }
+  .hidden {
+    display: none;
+  }
+  
+}
