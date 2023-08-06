@@ -1,7 +1,8 @@
-import { createTodo } from "./todo";
+import { createTodo } from "./btn-actions";
 
 export const getProjects = (() => {
   const projectList = [];
+  localStorage.setItem("projectList", JSON.stringify(projectList));
   
 
   //project factory function

@@ -9,11 +9,10 @@
 //View to-do details
 //Delete a to-do
 
-import { createTodo } from "./todo";
+import { createTodo } from "./btn-actions";
 import { getProjects } from "./projects";
 
 //project modal
-
 
 
 
