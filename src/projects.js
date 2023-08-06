@@ -2,6 +2,7 @@ import { createTodo } from "./todo";
 
 export const getProjects = (() => {
   const projectList = [];
+  
 
   //project factory function
   const createProject = (name) => {
@@ -13,6 +14,7 @@ export const getProjects = (() => {
         console.log(name)
         projectSelect.appendChild(projectOption);
   }
+  createProject('Personal')
 
   return {createProject};
 })();

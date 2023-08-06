@@ -35,9 +35,6 @@ export const createTodo = (() => {
     projectSubmitBtn.classList.add('hidden');
   });
 
-  //submit todo form and clear fields 
-
-
   //create project button show form
   projectBtn.addEventListener('click', () => {
     showForm('Create Project');
