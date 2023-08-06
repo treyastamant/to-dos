@@ -9,17 +9,28 @@
 //View to-do details
 //Delete a to-do
 
-const getProjects = () => {
+
+//project modal
+const getProjects = (() => {
   const projectList = [];
-}
 
-const createProject = (name) => {
-  // console.log (name);
-  return {name};
-}
+  //project factory function
+  const createProject = (name) => {
+    projectList.push(name);
+    const projectSelect = document.getElementById('project');
+    const projectOption = document.createElement('option');
+        projectOption.setAttribute('value', name);
+        projectOption.textContent = name;
+        console.log(name)
+        projectSelect.appendChild(projectOption);
+  }
 
-const displayProjects = ()  => {
-}
+  return {createProject};
+})();
+
+
+
+
 
 const todo = (name, description, date, priority, projectName) => {
   return {name, description, date, priority, projectName};
@@ -92,24 +103,18 @@ const createTodo = (() => {
   projectSubmitBtn.addEventListener('click', (e) => {
     e.preventDefault();
     hideForm();
+    getProjects.createProject(document.querySelector('#name').value);
+
     //reset inputs
     let inputs = document.querySelectorAll('input');
     for (i = 0; i < inputs.length; i++) {
       inputs[i].value = "";
     }
-    createProject(document.querySelector('#name').value);
   })
 
 })();
 
 
-const storeProjectName = () => {
-  const projectSelect = document.getElementById('project');
-  const projectOption = document.createElement('option');
-  projectOption.setAttribute('value', 'Default');
-  projectOption.textContent = "Default";
-  
-  projectSelect.appendChild(projectOption);
-}
+
 
 
