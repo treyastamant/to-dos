@@ -1,4 +1,4 @@
-import { getProjects } from "./projects";
+import { createProject } from "./projects";
 
 export const btnActions = (() => {
   const todoBtn = document.querySelector('.add-todo');
@@ -10,9 +10,6 @@ export const btnActions = (() => {
   const project = document.querySelector('.project-select');
   const projectSubmitBtn = document.querySelector('.project-btn');
   const todoSubmitBtn = document.querySelector('.todo-btn');
-
-  const nameValue = document.querySelector('#name').value;
-  const descriptionValue = document.querySelector('#description').value;
 
   const showForm = (msg) => {
     todoBtn.classList.add('hidden');
@@ -62,23 +59,14 @@ export const btnActions = (() => {
   //submit todo form and clear fields
   todoSubmitBtn.addEventListener('click', (e) => {
     e.preventDefault();
-    if (nameValue != "" || descriptionValue != "") {  
       hideForm();
-      console.log('not empty')
-    }
-    if (nameValue === "") {
-      console.log('name empty')
-    }
-    if (descriptionValue === "") {
-      console.log('description empty')
-    }
   })
 
 
   //submit project form and clear fields
   projectSubmitBtn.addEventListener('click', (e) => {
     e.preventDefault();
-    getProjects.createProject(document.querySelector('#name').value);
+    createProject(document.querySelector('#name').value);
     hideForm();
   })
 
