@@ -1,33 +1,53 @@
-import { createProject } from "./projects";
+import { projectStuff } from "./projects";
 
 export const btnActions = (() => {
   const todoBtn = document.querySelector('.add-todo');
   const projectBtn = document.querySelector('.add-project');
   const formMessage = document.querySelector('#form-message');
   const formContainer = document.querySelector('.form-container');
+  const description = document.querySelector('.description');
   const date = document.querySelector('.date');
   const priority = document.querySelector('.priority');
   const project = document.querySelector('.project-select');
   const projectSubmitBtn = document.querySelector('.project-btn');
   const todoSubmitBtn = document.querySelector('.todo-btn');
 
-  const showForm = (msg) => {
+  const showForm = (msg, type, currentName) => {
     todoBtn.classList.add('hidden');
     projectBtn.classList.add('hidden');
     formMessage.textContent = msg;
     formContainer.classList.remove('hidden');
-    if (msg === 'Add To-do') {
+    if (type === 'todo') {
       date.classList.remove('hidden');
       priority.classList.remove('hidden');
       project.classList.remove('hidden');
       todoSubmitBtn.classList.remove('hidden');
       projectSubmitBtn.classList.add('hidden');
-    } else {
+    } if (type === 'project') {
+      description.classList.add('hidden');
       date.classList.add('hidden');
       priority.classList.add('hidden');
       project.classList.add('hidden');
       todoSubmitBtn.classList.add('hidden');
       projectSubmitBtn.classList.remove('hidden');
+      projectSubmitBtn.addEventListener('click', (e) => {
+        e.preventDefault();
+        projectStuff.createProject(document.querySelector('#name').value);
+        hideForm();
+      }, {once: true});
+    } if (type === 'edit project') {
+      description.classList.add('hidden');
+      date.classList.add('hidden');
+      priority.classList.add('hidden');
+      project.classList.add('hidden');
+      todoSubmitBtn.classList.add('hidden');
+      projectSubmitBtn.classList.remove('hidden');
+      projectSubmitBtn.textContent = "Update";
+      projectSubmitBtn.addEventListener('click', (e) => {
+        e.preventDefault();
+        projectStuff.updateProject(currentName, document.querySelector('#name').value);
+        hideForm();
+      }, {once: true});
     }
   }
 
@@ -48,27 +68,31 @@ export const btnActions = (() => {
 
   //add todo button show form
   todoBtn.addEventListener('click', () => {
-    showForm('Add To-do');
+    showForm('Add To-do', 'todo');
   });
 
   //create project button show form
   projectBtn.addEventListener('click', () => {
-    showForm('Create Project');
+    showForm('Create Project', 'project');
   })
 
   //submit todo form and clear fields
   todoSubmitBtn.addEventListener('click', (e) => {
     e.preventDefault();
-      hideForm();
+      hideForm('todo');
   })
 
 
   //submit project form and clear fields
-  projectSubmitBtn.addEventListener('click', (e) => {
-    e.preventDefault();
-    createProject(document.querySelector('#name').value);
-    hideForm();
-  })
+  
+    // if (projectStuff.projectList.includes(document.getElementById('name').value)) {
+    //   const index = projectStuff.projectList.findIndex(document.querySelector('#name').value);
+    //   projectStuff.projectList[index] = document.querySelector('#name').value;
+    //   projectStuff.updateProject(document.querySelector('#name').value);
+    // }
+    
+
+  return {showForm, hideForm}
 
 })();
 

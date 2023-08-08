@@ -80,7 +80,7 @@ button, .submit {
 }
 
 /* project display  */
-.project-container .material-symbols-rounded {
+.project-container .edit {
   margin-left: 10px;
   font-size: 21px;
   padding: 3px;
@@ -88,6 +88,7 @@ button, .submit {
   border-radius: 100%;
   border: 2px solid cornflowerblue;
   color:cornflowerblue;
+  cursor: pointer;
 }
 
 .hidden {
