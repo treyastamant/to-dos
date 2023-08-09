@@ -5,12 +5,11 @@ export const btnActions = (() => {
   const projectBtn = document.querySelector('.add-project');
   const formMessage = document.querySelector('#form-message');
   const formContainer = document.querySelector('.form-container');
-  const description = document.querySelector('.description');
+  
   const date = document.querySelector('.date');
   const priority = document.querySelector('.priority');
   const project = document.querySelector('.project-select');
-  const projectSubmitBtn = document.querySelector('.project-btn');
-  const todoSubmitBtn = document.querySelector('.todo-btn');
+  const submitBtn = document.querySelector('.submit-btn');
 
   const showForm = (msg, type, currentName) => {
     todoBtn.classList.add('hidden');
@@ -21,29 +20,29 @@ export const btnActions = (() => {
       date.classList.remove('hidden');
       priority.classList.remove('hidden');
       project.classList.remove('hidden');
-      todoSubmitBtn.classList.remove('hidden');
-      projectSubmitBtn.classList.add('hidden');
+      submitBtn.textContent = "Add New Todo";
+       //submit todo form and clear fields
+      submitBtn.addEventListener('click', (e) => {
+        e.preventDefault();
+        createTodo(document.querySelector('#name').value, document.querySelector('#date').value, document.querySelector('#priority').value, document.querySelector('#project').value);
+        hideForm('todo');
+      })
     } if (type === 'project') {
-      description.classList.add('hidden');
       date.classList.add('hidden');
       priority.classList.add('hidden');
       project.classList.add('hidden');
-      todoSubmitBtn.classList.add('hidden');
-      projectSubmitBtn.classList.remove('hidden');
-      projectSubmitBtn.addEventListener('click', (e) => {
+      submitBtn.textContent = "Add New Project";
+      submitBtn.addEventListener('click', (e) => {
         e.preventDefault();
         projectStuff.createProject(document.querySelector('#name').value);
         hideForm();
       }, {once: true});
     } if (type === 'edit project') {
-      description.classList.add('hidden');
       date.classList.add('hidden');
       priority.classList.add('hidden');
       project.classList.add('hidden');
-      todoSubmitBtn.classList.add('hidden');
-      projectSubmitBtn.classList.remove('hidden');
-      projectSubmitBtn.textContent = "Update";
-      projectSubmitBtn.addEventListener('click', (e) => {
+      submitBtn.textContent = "Update";
+      submitBtn.addEventListener('click', (e) => {
         e.preventDefault();
         projectStuff.updateProject(currentName, document.querySelector('#name').value);
         hideForm();
@@ -76,28 +75,27 @@ export const btnActions = (() => {
     showForm('Create Project', 'project');
   })
 
-  //submit todo form and clear fields
-  todoSubmitBtn.addEventListener('click', (e) => {
-    e.preventDefault();
-    createTodo(document.querySelector('#name').value, document.querySelector('#description').value, document.querySelector('#date').value, document.querySelector('#priority').value, document.querySelector('#project').value);
-      hideForm('todo');
-  })
-
-
-    // if (projectStuff.projectList.includes(document.getElementById('name').value)) {
-    //   const index = projectStuff.projectList.findIndex(document.querySelector('#name').value);
-    //   projectStuff.projectList[index] = document.querySelector('#name').value;
-    //   projectStuff.updateProject(document.querySelector('#name').value);
-    // }
-    
+ 
 
   return {showForm, hideForm}
 
 })();
 
-const createTodo = (name, description, date, priority, projectName) => {
+const createTodo = (name, date, priority, projectName) => {
   let todos = [];
-  let todo = {name, description, date, priority, projectName};
+  let todo = {name, date, priority, projectName};
   todos.push(todo);
   console.log(todos[0]);
+  attachToProject(todo);
+
+  return todos;
+}
+
+const attachToProject = (todo) => {
+  projectStuff.projectList.forEach((e) => {
+    if (todo.projectName === e) {
+      console.log(e, todo.name);
+    }
+  })
+  
 }
