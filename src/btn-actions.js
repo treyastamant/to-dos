@@ -79,12 +79,11 @@ export const btnActions = (() => {
   //submit todo form and clear fields
   todoSubmitBtn.addEventListener('click', (e) => {
     e.preventDefault();
+    createTodo(document.querySelector('#name').value, document.querySelector('#description').value, document.querySelector('#date').value, document.querySelector('#priority').value, document.querySelector('#project').value);
       hideForm('todo');
   })
 
 
-  //submit project form and clear fields
-  
     // if (projectStuff.projectList.includes(document.getElementById('name').value)) {
     //   const index = projectStuff.projectList.findIndex(document.querySelector('#name').value);
     //   projectStuff.projectList[index] = document.querySelector('#name').value;
@@ -96,6 +95,9 @@ export const btnActions = (() => {
 
 })();
 
-// const todo = (name, description, date, priority, projectName) => {
-//   return {name, description, date, priority, projectName};
-// }
+const createTodo = (name, description, date, priority, projectName) => {
+  let todos = [];
+  let todo = {name, description, date, priority, projectName};
+  todos.push(todo);
+  console.log(todos[0]);
+}
