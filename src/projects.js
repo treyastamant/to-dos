@@ -10,18 +10,27 @@ export const projectStuff = (() => {
   //add project to drop-down
   const populateProjectDropDown = (name, type, index) => {
     const projectSelect = document.getElementById('project');
-    if (type === 'new') {
-    const projectOption = document.createElement('option');
-    projectOption.setAttribute('value', name);
-    projectOption.classList.add('project-option');
-    projectOption.textContent = name;
-    projectSelect.appendChild(projectOption);
-    }
-    if (type === 'edit') {
-      const projectOption = document.querySelectorAll('.project-option');
-      projectOption[index].textContent = name;
-      projectOption[index].setAttribute('value', name);
-    }
+    projectSelect.innerHTML = "";
+    projectList.forEach((e) => {
+      const projectOption = document.createElement('option');
+      projectOption.setAttribute('value', e);
+      projectOption.classList.add('project-option');
+      projectOption.textContent = e;
+      projectSelect.appendChild(projectOption);
+    });
+
+    // if (type === 'new') {
+    // const projectOption = document.createElement('option');
+    // projectOption.setAttribute('value', name);
+    // projectOption.classList.add('project-option');
+    // projectOption.textContent = name;
+    // projectSelect.appendChild(projectOption);
+    // }
+    // if (type === 'edit') {
+    //   const projectOption = document.querySelectorAll('.project-option');
+    //   projectOption[index].textContent = name;
+    //   projectOption[index].setAttribute('value', name);
+    // }
   }
 
   //show project name on page
