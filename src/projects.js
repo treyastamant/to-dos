@@ -8,7 +8,7 @@ export const projectStuff = (() => {
   
   
   //add project to drop-down
-  const populateProjectDropDown = (name, type, index) => {
+  const populateProjectDropDown = () => {
     const projectSelect = document.getElementById('project');
     projectSelect.innerHTML = "";
     projectList.forEach((e) => {
@@ -18,23 +18,10 @@ export const projectStuff = (() => {
       projectOption.textContent = e;
       projectSelect.appendChild(projectOption);
     });
-
-    // if (type === 'new') {
-    // const projectOption = document.createElement('option');
-    // projectOption.setAttribute('value', name);
-    // projectOption.classList.add('project-option');
-    // projectOption.textContent = name;
-    // projectSelect.appendChild(projectOption);
-    // }
-    // if (type === 'edit') {
-    //   const projectOption = document.querySelectorAll('.project-option');
-    //   projectOption[index].textContent = name;
-    //   projectOption[index].setAttribute('value', name);
-    // }
   }
 
   //show project name on page
-  const displayProject = (name, type, index) => {
+  const displayProject = () => {
     const projectContainer = document.querySelector('.project-container');
     projectContainer.innerHTML = "";
     projectList.forEach((e) => {
@@ -50,31 +37,6 @@ export const projectStuff = (() => {
       projectContainer.appendChild(projectName);
       projectName.appendChild(editIcon);
     })
-
-    // if (type === "new") {
-    //   const projectName = document.createElement('h2');
-    //   projectName.classList.add('project-name');
-    //   const editIcon = document.createElement('span');
-    //   editIcon.classList.add ('material-symbols-rounded', 'edit');
-    //   editIcon.textContent = 'edit';
-    //   editIcon.addEventListener('click', () => {
-    //     editAction(`Edit Project Name`, 'edit project', name)
-    //   });
-    //   projectName.textContent = name;
-    //   projectContainer.appendChild(projectName);
-    //   projectName.appendChild(editIcon);
-    // }
-    // if (type === "edit") {
-    //   const projectName = document.querySelectorAll('.project-name');
-    //   projectName[index].textContent = name;
-    //   const editIcon = document.createElement('span');
-    //   editIcon.classList.add ('material-symbols-rounded', 'edit');
-    //   editIcon.textContent = 'edit';
-    //   editIcon.addEventListener('click', () => {
-    //     editAction(`Edit Project Name`, 'edit project', name)
-    //   });
-    //   projectName[index].appendChild(editIcon);
-    // }
   }
 
   const editAction = (msg, type, name) => {
@@ -93,8 +55,8 @@ export const projectStuff = (() => {
     projectList.push(name);
     localStorage.setItem("projectList", JSON.stringify(projectList));
 
-    populateProjectDropDown(name, 'new');
-    displayProject(name, 'new');
+    populateProjectDropDown();
+    displayProject();
 
   }
 
@@ -103,15 +65,12 @@ export const projectStuff = (() => {
     let index = projectList.indexOf(currentName);
     projectList[index] = newName;
     localStorage.setItem("projectList", JSON.stringify(projectList));
-    displayProject(newName, 'edit', index);
-    populateProjectDropDown(newName, 'edit', index);
+    displayProject();
+    populateProjectDropDown();
   }
-
-  // if (localStorage.getItem("projectList")) {
-    // projectList.map((projectList) => {
-      displayProject(projectList);
-    // });
-  // } 
+      
+  displayProject();
+  populateProjectDropDown();
   
   return {createProject, projectList, updateProject}
 })();
