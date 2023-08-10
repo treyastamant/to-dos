@@ -5,6 +5,7 @@ export const btnActions = (() => {
   const projectBtn = document.querySelector('.add-project');
   const formMessage = document.querySelector('#form-message');
   const formContainer = document.querySelector('.form-container');
+  const projectContainer = document.querySelector('.project-container');
   
   const date = document.querySelector('.date');
   const priority = document.querySelector('.priority');
@@ -14,6 +15,7 @@ export const btnActions = (() => {
   const showForm = (msg, type, currentName) => {
     todoBtn.classList.add('hidden');
     projectBtn.classList.add('hidden');
+    projectContainer.classList.add('hidden');
     formMessage.textContent = msg;
     formContainer.classList.remove('hidden');
     if (type === 'todo') {
@@ -26,7 +28,7 @@ export const btnActions = (() => {
         e.preventDefault();
         createTodo(document.querySelector('#name').value, document.querySelector('#date').value, document.querySelector('#priority').value, document.querySelector('#project').value);
         hideForm('todo');
-      })
+      }, {once: true})
     } if (type === 'project') {
       date.classList.add('hidden');
       priority.classList.add('hidden');
@@ -55,6 +57,7 @@ export const btnActions = (() => {
     projectBtn.classList.remove('hidden');
     formMessage.textContent = "";
     formContainer.classList.add('hidden');
+    projectContainer.classList.remove('hidden');
     //reset priority and project
     document.querySelector('#priority').selectedIndex = 0;
     document.querySelector('#project').selectedIndex = 0;
