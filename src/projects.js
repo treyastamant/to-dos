@@ -25,6 +25,9 @@ export const projectStuff = (() => {
     const projectContainer = document.querySelector('.project-container');
     projectContainer.innerHTML = "";
     projectList.forEach((e) => {
+      const className = e.replace(/\s+/g, '-').toLowerCase();
+      const projectDiv = document.createElement('div');
+      projectDiv.className = className;
       const projectName = document.createElement('h2');
       projectName.classList.add('project-name');
       const editIcon = document.createElement('span');
@@ -34,7 +37,8 @@ export const projectStuff = (() => {
         editAction(`Edit Project Name`, 'edit project', e)
       });
       projectName.textContent = e;
-      projectContainer.appendChild(projectName);
+      projectContainer.appendChild(projectDiv);
+      projectDiv.appendChild(projectName);
       projectName.appendChild(editIcon);
     })
   }
@@ -49,6 +53,12 @@ export const projectStuff = (() => {
   //   newTodo.textContent = todo;
   //   projectName.appendChild(todo);
   // }
+  // const createProjectArray = () => {
+  //   projectList.forEach((e) => {
+  //     e = [];
+  //     console.log(e);
+  //   })
+  // }
 
   //project factory function
   const createProject = (name) => {
@@ -57,7 +67,7 @@ export const projectStuff = (() => {
 
     populateProjectDropDown();
     displayProject();
-
+    // createProjectArray();
   }
 
   const updateProject = (currentName, newName) => {
