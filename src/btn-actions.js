@@ -1,4 +1,5 @@
 import { projectStuff } from "./projects";
+import { toDoStuff } from "./todos";
 
 export const btnActions = (() => {
   const todoBtn = document.querySelector('.add-todo');
@@ -26,7 +27,7 @@ export const btnActions = (() => {
        //submit todo form and clear fields
       submitBtn.addEventListener('click', (e) => {
         e.preventDefault();
-        toDos.createTodo(document.querySelector('#name').value, document.querySelector('#date').value, document.querySelector('#priority').value, document.querySelector('#project').value);
+        toDoStuff.createTodo(document.querySelector('#name').value, document.querySelector('#date').value, document.querySelector('#priority').value, document.querySelector('#project').value);
         hideForm('todo');
       }, {once: true})
     } if (type === 'project') {
@@ -78,54 +79,10 @@ export const btnActions = (() => {
     showForm('Create Project', 'project');
   })
 
-  return {showForm, hideForm}
 
-})();
-
-
-const toDos = (() => {
-  let toDos = [];
-  const createTodo = (name, date, priority, projectName) => {
-   
-    let toDo = {name, date, priority, projectName};
-    toDos.push(toDo);
-    attachToProject(toDo, projectName);
-
-    return {toDos};
-  }
-
-  const attachToProject = (toDo, projectName) => {
-    projectStuff.projectList.forEach((e) => {
-      if (projectName === e) {
-        const className = e.replace(/\s+/g, '-').toLowerCase();
-        console.log(className)
-        const projectName = document.querySelector(`.${className}`);
-        const toDoItem = document.createElement('p');
-        toDoItem.textContent = toDo.name;
-
-        projectName.appendChild(toDoItem);
-        console.log(e, projectName)
-      }
-    })
-
-    // createTodo.toDos.forEach((t) => {
-    //   projectStuff.projectList.forEach((p) => {
-    //     if (t.projectName === p) {
-    //       console.log(t, p)
-    //     }
-    //   })
-      
-    // })
-    
-    
-    // projectStuff.projectList.forEach((e) => {
-    //   if (projectName === e) {
-    //     projectName
-    //   // projectArray.push(todo);
-    //   console.log(e);
-    //   }
-    // })
-  }
   
-  return {createTodo, attachToProject}
+  
+  return {showForm, hideForm}
 })();
+
+  

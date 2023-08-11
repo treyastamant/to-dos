@@ -1,10 +1,9 @@
 import { btnActions } from "./btn-actions";
+import { toDoStuff } from "./todos";
 
 export const projectStuff = (() => {
   // localStorage.clear();
   const projectList = JSON.parse(localStorage.getItem("projectList")) || ['Personal'];
-  
-  console.log(projectList)
   
   
   //add project to drop-down
@@ -36,10 +35,19 @@ export const projectStuff = (() => {
       editIcon.addEventListener('click', () => {
         editAction(`Edit Project Name`, 'edit project', e)
       });
+
       projectName.textContent = e;
       projectContainer.appendChild(projectDiv);
       projectDiv.appendChild(projectName);
       projectName.appendChild(editIcon);
+      
+      toDoStuff.toDos.forEach((t) => {
+        if (t.projectName === e) {
+          const toDoItem = document.createElement('p');
+          toDoItem.textContent = t.name;
+          projectDiv.appendChild(toDoItem);
+        }
+      })
     })
   }
 
@@ -82,5 +90,5 @@ export const projectStuff = (() => {
   displayProject();
   populateProjectDropDown();
   
-  return {createProject, projectList, updateProject}
+  return {createProject, projectList, updateProject, displayProject}
 })();
