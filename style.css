@@ -74,9 +74,13 @@ button, .submit {
   border-radius: 10px;
 }
 
+.project-container {
+  display: grid;
+  row-gap: 20px;
+}
+
 .project-container h2 { 
   text-align: left;
-  margin-bottom: 18px;
 }
 
 /* project display  */
@@ -91,9 +95,17 @@ button, .submit {
   cursor: pointer;
 }
 
+.project-container div {
+  background-color: #f7f7f7;
+  padding: 10px 20px;
+  border-radius: 10px;
+}
+
 .hidden {
   display: none;
 }
+
+
 
 @media only screen and (max-width: 600px) {
   .add-buttons {
