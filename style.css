@@ -77,14 +77,43 @@ button, .submit {
 .project-container {
   display: grid;
   row-gap: 20px;
+  width: 80%;
+  margin: auto;
 }
 
 .project-container h2 { 
   text-align: left;
 }
 
+
+
+.to-do-item {
+  background-color: white;
+  padding: 10px;
+  border-radius: 5px;
+  display: grid;
+  align-items: center;
+  grid-template-columns: 1fr auto auto auto;
+  column-gap: 10px;
+}
+
+.project-container div div {
+  background-color: white;
+  margin-top: 10px;
+}
+
+.to-do-item .edit {
+  margin-left: 10px;
+  font-size: 16px;
+  padding: 3px;
+  border-radius: 100%;
+  border: 2px solid cornflowerblue;
+  color:cornflowerblue;
+  cursor: pointer;
+}
+
 /* project display  */
-.project-container .edit {
+.project-name .edit {
   margin-left: 10px;
   font-size: 21px;
   padding: 3px;
@@ -97,7 +126,7 @@ button, .submit {
 
 .project-container div {
   background-color: #f7f7f7;
-  padding: 10px 20px;
+  padding: 10px 10px;
   border-radius: 10px;
 }
 
