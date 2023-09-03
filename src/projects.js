@@ -43,9 +43,23 @@ export const projectStuff = (() => {
       
       toDoStuff.toDos.forEach((t) => {
         if (t.projectName === e) {
-          const toDoItem = document.createElement('p');
-          toDoItem.textContent = t.name;
+          const toDoItem = document.createElement('div');
+          toDoItem.classList.add('to-do-item');
+          const toDoName = document.createElement('span');
+          toDoName.textContent = t.name;
+          const toDoPriority = document.createElement('span');
+          toDoPriority.textContent = t.priority;
+          const toDoDate = document.createElement('span');
+          toDoDate.textContent = t.date;
+          const editIcon = document.createElement('span');
+          editIcon.classList.add ('material-symbols-rounded', 'edit');
+          editIcon.textContent = 'edit';
+          editIcon.addEventListener('click', () => {
+            editAction(`Edit To Do`, 'edit todo', e)
+          });
+
           projectDiv.appendChild(toDoItem);
+          toDoItem.append(toDoName, toDoPriority, toDoDate, editIcon);
         }
       })
     })

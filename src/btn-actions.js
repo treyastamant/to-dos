@@ -50,6 +50,16 @@ export const btnActions = (() => {
         projectStuff.updateProject(currentName, document.querySelector('#name').value);
         hideForm();
       }, {once: true});
+    } if (type === 'edit todo') {
+      date.classList.remove('hidden');
+      priority.classList.remove('hidden');
+      project.classList.remove('hidden');
+      submitBtn.textContent = "Update";
+      submitBtn.addEventListener('click', (e) => {
+        e.preventDefault();
+        projectStuff.updateProject(currentName, document.querySelector('#name').value);
+        hideForm();
+      }, {once: true});
     }
   }
 
