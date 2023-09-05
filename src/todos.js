@@ -2,11 +2,12 @@ import { projectStuff } from "./projects";
 import { btnActions } from "./btn-actions";
 
 export const toDoStuff = (() => {
-let toDos = [];
+let toDos = JSON.parse(localStorage.getItem("toDos")) || [];
   const createTodo = (name, date, priority, projectName) => {
    
     let toDo = {name, date, priority, projectName};
     toDos.push(toDo);
+    localStorage.setItem("toDos", JSON.stringify(toDos));
     projectStuff.displayProject();
     // attachToProject(toDo, projectName);
 
@@ -36,7 +37,6 @@ let toDos = [];
         // e.push(toDo);
         console.log(projectStuff.createProject.projectArray);
     })
-    
   
   }
   return { createTodo, attachToProject, toDos };
