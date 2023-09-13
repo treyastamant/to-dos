@@ -9,6 +9,10 @@ h1, h2 {
   text-align: center;
 }
 
+h1 {
+  margin-top: 30px;
+}
+
 .form-container {
   background-color: #f7f7f7;
   width: 500px;
@@ -81,6 +85,25 @@ button, .submit {
   margin: auto;
 }
 
+.project-button {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  justify-self: start;
+  justify-items: start;
+  column-gap: 10px;
+  align-items: center;
+  margin: 0px;
+  background-color: white;
+  color: cornflowerblue;
+  font-size: 16px;
+  padding: 0px;
+  padding-left: 10px;
+  cursor: pointer;
+}
+
+
+
+
 .project-container h2 { 
   text-align: left;
 }
@@ -104,10 +127,7 @@ button, .submit {
 
 .to-do-item .edit {
   margin-left: 10px;
-  font-size: 16px;
-  padding: 3px;
-  border-radius: 100%;
-  border: 2px solid cornflowerblue;
+  font-size: 21px;
   color:cornflowerblue;
   cursor: pointer;
 }
@@ -115,14 +135,15 @@ button, .submit {
 /* project display  */
 .project-name .edit {
   margin-left: 10px;
-  font-size: 21px;
-  padding: 3px;
+  font-size: 24px;
   text-align: center;
-  border-radius: 100%;
-  border: 2px solid cornflowerblue;
   color:cornflowerblue;
   cursor: pointer;
 }
+
+.project-button:hover, .edit:hover {
+  color: rgb(52, 113, 226);
+  }
 
 .project-container div {
   background-color: #f7f7f7;

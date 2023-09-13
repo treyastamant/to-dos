@@ -39,5 +39,19 @@ let toDos = JSON.parse(localStorage.getItem("toDos")) || [];
     })
   
   }
-  return { createTodo, attachToProject, toDos };
+
+  const editAction = (msg, type, name) => {
+    document.querySelector('#name').value = name;
+    btnActions.showForm(msg, type, name);
+  }
+
+  const updateTodoName = (currentName, newName) => {
+    console.log(currentName, newName);
+    let index = toDos.indexOf(currentName);
+    toDos[index].name = newName;
+    localStorage.setItem("toDos", JSON.stringify(toDos));
+    displayProject();
+  }
+
+  return { createTodo, attachToProject, toDos, updateTodoName };
 })();

@@ -30,7 +30,7 @@ export const projectStuff = (() => {
       const projectName = document.createElement('h2');
       projectName.classList.add('project-name');
       const editIcon = document.createElement('span');
-      editIcon.classList.add ('material-symbols-rounded', 'edit');
+      editIcon.classList.add ('material-symbols-outlined', 'edit');
       editIcon.textContent = 'edit';
       editIcon.addEventListener('click', () => {
         editAction(`Edit Project Name`, 'edit project', e)
@@ -52,10 +52,10 @@ export const projectStuff = (() => {
           const toDoDate = document.createElement('span');
           toDoDate.textContent = t.date;
           const editIcon = document.createElement('span');
-          editIcon.classList.add ('material-symbols-rounded', 'edit');
+          editIcon.classList.add ('material-symbols-outlined', 'edit');
           editIcon.textContent = 'edit';
           editIcon.addEventListener('click', () => {
-            editAction(`Edit To Do`, 'edit todo', e)
+            editTodoAction(`Edit To Do`, 'edit todo', t)
           });
 
           projectDiv.appendChild(toDoItem);
@@ -63,11 +63,32 @@ export const projectStuff = (() => {
         }
       })
     })
+    const newProject = document.createElement('button');
+    newProject.classList.add('project-button');
+    
+    const buttonText = 'Create New List'
+    const newProjectIcon = document.createElement('span');
+    newProjectIcon.classList.add ('material-symbols-outlined', 'edit');
+    newProjectIcon.textContent = 'add';
+    
+    newProject.append(newProjectIcon, buttonText);
+    projectContainer.appendChild(newProject);
+    newProject.addEventListener('click', () => {
+      btnActions.showForm('Create New List', 'project');
+    });
   }
 
   const editAction = (msg, type, name) => {
     document.querySelector('#name').value = name;
     btnActions.showForm(msg, type, name);
+  }
+
+  const editTodoAction = (msg, type, todo) => {
+    document.querySelector('#name').value = todo.name;
+    document.querySelector('#date').value = todo.date;
+    document.querySelector('#priority').value = todo.priority;
+    document.querySelector('#project').value = todo.project;
+    btnActions.showForm(msg, type, todo.name);
   }
 
   // const displayNestedTodos = (projectName, todo) => {

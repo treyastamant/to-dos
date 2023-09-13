@@ -15,7 +15,7 @@ export const btnActions = (() => {
 
   const showForm = (msg, type, currentName) => {
     todoBtn.classList.add('hidden');
-    projectBtn.classList.add('hidden');
+    // projectBtn.classList.add('hidden');
     projectContainer.classList.add('hidden');
     formMessage.textContent = msg;
     formContainer.classList.remove('hidden');
@@ -34,7 +34,7 @@ export const btnActions = (() => {
       date.classList.add('hidden');
       priority.classList.add('hidden');
       project.classList.add('hidden');
-      submitBtn.textContent = "Add New Project";
+      submitBtn.textContent = "Submit";
       submitBtn.addEventListener('click', (e) => {
         e.preventDefault();
         projectStuff.createProject(document.querySelector('#name').value);
@@ -65,7 +65,7 @@ export const btnActions = (() => {
 
   const hideForm = () => {
     todoBtn.classList.remove('hidden');
-    projectBtn.classList.remove('hidden');
+    // projectBtn.classList.remove('hidden');
     formMessage.textContent = "";
     formContainer.classList.add('hidden');
     projectContainer.classList.remove('hidden');
@@ -85,9 +85,9 @@ export const btnActions = (() => {
   });
 
   //create project button show form
-  projectBtn.addEventListener('click', () => {
-    showForm('Create Project', 'project');
-  })
+  // projectBtn.addEventListener('click', () => {
+  //   showForm('Create Project', 'project');
+  // })
 
 
   
