@@ -45,17 +45,24 @@ let toDos = JSON.parse(localStorage.getItem("toDos")) || [];
     btnActions.showForm(msg, type, name);
   }
 
-  const updateTodoName = (currentName, newName) => {
+  const updateTodoName = (current, updated) => {
       let index = toDos.map(function (e) {
           return e.name;
-      }).indexOf(currentName);
-      console.log(
-          "Index of value object is = " + index
-      );
-    toDos[index].name = newName;
+      }).indexOf(current);
+    toDos[index].name = updated;
     localStorage.setItem("toDos", JSON.stringify(toDos));
     projectStuff.displayProject();
   }
 
-  return { createTodo, attachToProject, toDos, updateTodoName };
+  const updateTodoDate = (current, updated) => {
+    let index = toDos.map(function (e) {
+        return e.name;
+    }).indexOf(current);
+  toDos[index].date = updated;
+  localStorage.setItem("toDos", JSON.stringify(toDos));
+  projectStuff.displayProject();
+}
+
+
+  return { createTodo, attachToProject, toDos, updateTodoName, updateTodoDate };
 })();

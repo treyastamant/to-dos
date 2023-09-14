@@ -12,7 +12,7 @@ export const btnActions = (() => {
   const project = document.querySelector('.project-select');
   const submitBtn = document.querySelector('.submit-btn');
 
-  const showForm = (msg, type, currentName) => {
+  const showForm = (msg, type, current) => {
     todoBtn.classList.add('hidden');
     projectContainer.classList.add('hidden');
     formMessage.textContent = msg;
@@ -31,7 +31,8 @@ export const btnActions = (() => {
       submitBtn.addEventListener('click', (e) => {
         e.preventDefault();
         //update todo item
-        toDoStuff.updateTodoName(currentName, document.querySelector('#name').value);
+        toDoStuff.updateTodoName(current, document.querySelector('#name').value);
+        toDoStuff.updateTodoDate(current, document.querySelector('#date').value);
         hideForm();
       }, {once: true});
     } if (type === 'project') {
@@ -46,7 +47,7 @@ export const btnActions = (() => {
       submitBtn.textContent = "Update";
       submitBtn.addEventListener('click', (e) => {
         e.preventDefault();
-        projectStuff.updateProject(currentName, document.querySelector('#name').value);
+        projectStuff.updateProject(current, document.querySelector('#name').value);
         hideForm();
       }, {once: true});
     } 
