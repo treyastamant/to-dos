@@ -15,22 +15,28 @@ export const btnActions = (() => {
 
   const showForm = (msg, type, currentName) => {
     todoBtn.classList.add('hidden');
-    // projectBtn.classList.add('hidden');
     projectContainer.classList.add('hidden');
     formMessage.textContent = msg;
     formContainer.classList.remove('hidden');
+    submitBtn.textContent = "Submit";
     if (type === 'todo') {
       showFormInputs();
-      submitBtn.textContent = "Add New Todo";
-       //submit todo form and clear fields
       submitBtn.addEventListener('click', (e) => {
         e.preventDefault();
         toDoStuff.createTodo(document.querySelector('#name').value, document.querySelector('#date').value, document.querySelector('#priority').value, document.querySelector('#project').value);
         hideForm('todo');
       }, {once: true})
+    } if (type === 'edit todo') {
+      showFormInputs();
+      submitBtn.textContent = "Update";
+      submitBtn.addEventListener('click', (e) => {
+        e.preventDefault();
+        //update todo item
+        // projectStuff.updateProject(currentName, document.querySelector('#name').value);
+        hideForm();
+      }, {once: true});
     } if (type === 'project') {
       hideFormInputs();
-      submitBtn.textContent = "Submit";
       submitBtn.addEventListener('click', (e) => {
         e.preventDefault();
         projectStuff.createProject(document.querySelector('#name').value);
@@ -44,15 +50,7 @@ export const btnActions = (() => {
         projectStuff.updateProject(currentName, document.querySelector('#name').value);
         hideForm();
       }, {once: true});
-    } if (type === 'edit todo') {
-      showFormInputs();
-      submitBtn.textContent = "Update";
-      submitBtn.addEventListener('click', (e) => {
-        e.preventDefault();
-        projectStuff.updateProject(currentName, document.querySelector('#name').value);
-        hideForm();
-      }, {once: true});
-    }
+    } 
   }
 
   const showFormInputs = () => {
@@ -69,7 +67,6 @@ export const btnActions = (() => {
 
   const hideForm = () => {
     todoBtn.classList.remove('hidden');
-    // projectBtn.classList.remove('hidden');
     formMessage.textContent = "";
     formContainer.classList.add('hidden');
     projectContainer.classList.remove('hidden');
@@ -87,14 +84,6 @@ export const btnActions = (() => {
   todoBtn.addEventListener('click', () => {
     showForm('Add To-do', 'todo');
   });
-
-  //create project button show form
-  // projectBtn.addEventListener('click', () => {
-  //   showForm('Create Project', 'project');
-  // })
-
-
-  
   
   return {showForm, hideForm}
 })();
