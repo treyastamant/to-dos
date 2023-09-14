@@ -20,7 +20,7 @@ export const btnActions = (() => {
     formMessage.textContent = msg;
     formContainer.classList.remove('hidden');
     if (type === 'todo') {
-      hideFormInputs();
+      showFormInputs();
       submitBtn.textContent = "Add New Todo";
        //submit todo form and clear fields
       submitBtn.addEventListener('click', (e) => {
@@ -29,9 +29,7 @@ export const btnActions = (() => {
         hideForm('todo');
       }, {once: true})
     } if (type === 'project') {
-      date.classList.add('hidden');
-      priority.classList.add('hidden');
-      project.classList.add('hidden');
+      hideFormInputs();
       submitBtn.textContent = "Submit";
       submitBtn.addEventListener('click', (e) => {
         e.preventDefault();
@@ -39,9 +37,7 @@ export const btnActions = (() => {
         hideForm();
       }, {once: true});
     } if (type === 'edit project') {
-      date.classList.add('hidden');
-      priority.classList.add('hidden');
-      project.classList.add('hidden');
+      hideFormInputs();
       submitBtn.textContent = "Update";
       submitBtn.addEventListener('click', (e) => {
         e.preventDefault();
@@ -49,7 +45,7 @@ export const btnActions = (() => {
         hideForm();
       }, {once: true});
     } if (type === 'edit todo') {
-      hideFormInputs();
+      showFormInputs();
       submitBtn.textContent = "Update";
       submitBtn.addEventListener('click', (e) => {
         e.preventDefault();
@@ -59,10 +55,16 @@ export const btnActions = (() => {
     }
   }
 
-  const hideFormInputs = () => {
+  const showFormInputs = () => {
     date.classList.remove('hidden');
     priority.classList.remove('hidden');
     project.classList.remove('hidden');
+  }
+
+  const hideFormInputs = () => {
+    date.classList.add('hidden');
+    priority.classList.add('hidden');
+    project.classList.add('hidden');
   }
 
   const hideForm = () => {
