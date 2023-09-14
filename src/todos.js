@@ -46,11 +46,15 @@ let toDos = JSON.parse(localStorage.getItem("toDos")) || [];
   }
 
   const updateTodoName = (currentName, newName) => {
-    console.log(currentName, newName);
-    let index = toDos.indexOf(currentName);
+      let index = toDos.map(function (e) {
+          return e.name;
+      }).indexOf(currentName);
+      console.log(
+          "Index of value object is = " + index
+      );
     toDos[index].name = newName;
     localStorage.setItem("toDos", JSON.stringify(toDos));
-    displayProject();
+    projectStuff.displayProject();
   }
 
   return { createTodo, attachToProject, toDos, updateTodoName };

@@ -3,7 +3,6 @@ import { toDoStuff } from "./todos";
 
 export const btnActions = (() => {
   const todoBtn = document.querySelector('.add-todo');
-  const projectBtn = document.querySelector('.add-project');
   const formMessage = document.querySelector('#form-message');
   const formContainer = document.querySelector('.form-container');
   const projectContainer = document.querySelector('.project-container');
@@ -32,7 +31,7 @@ export const btnActions = (() => {
       submitBtn.addEventListener('click', (e) => {
         e.preventDefault();
         //update todo item
-        // projectStuff.updateProject(currentName, document.querySelector('#name').value);
+        toDoStuff.updateTodoName(currentName, document.querySelector('#name').value);
         hideForm();
       }, {once: true});
     } if (type === 'project') {
