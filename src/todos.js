@@ -40,29 +40,29 @@ let toDos = JSON.parse(localStorage.getItem("toDos")) || [];
   
   }
 
-  const editAction = (msg, type, name) => {
-    document.querySelector('#name').value = name;
-    btnActions.showForm(msg, type, name);
-  }
-
-  const updateTodoName = (current, updated) => {
+  const updateTodoName = (current, name, date, priority, project) => {
       let index = toDos.map(function (e) {
           return e.name;
       }).indexOf(current);
-    toDos[index].name = updated;
+        toDos[index].name = name;
+        toDos[index].date = date;
+        toDos[index].priority = priority;
+        toDos[index].projectName = project;
+  
     localStorage.setItem("toDos", JSON.stringify(toDos));
     projectStuff.displayProject();
   }
+  
 
-  const updateTodoDate = (current, updated) => {
-    let index = toDos.map(function (e) {
-        return e.name;
-    }).indexOf(current);
-  toDos[index].date = updated;
-  localStorage.setItem("toDos", JSON.stringify(toDos));
-  projectStuff.displayProject();
-}
+//   const updateTodoDate = (current, updated) => {
+//     let index = toDos.map(function (e) {
+//         return e.name;
+//     }).indexOf(current);
+//   toDos[index].date = updated;
+//   localStorage.setItem("toDos", JSON.stringify(toDos));
+//   projectStuff.displayProject();
+// }
 
 
-  return { createTodo, attachToProject, toDos, updateTodoName, updateTodoDate };
+  return { createTodo, attachToProject, toDos, updateTodoName };
 })();

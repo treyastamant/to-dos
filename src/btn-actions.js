@@ -31,8 +31,10 @@ export const btnActions = (() => {
       submitBtn.addEventListener('click', (e) => {
         e.preventDefault();
         //update todo item
-        toDoStuff.updateTodoName(current, document.querySelector('#name').value);
-        toDoStuff.updateTodoDate(current, document.querySelector('#date').value);
+        toDoStuff.updateTodoName(current, document.querySelector('#name').value, document.querySelector('#date').value, document.querySelector('#priority').value, document.querySelector('#project').value);
+        // toDoStuff.updateTodoName(current, document.querySelector('#date').value, 'date');
+        // toDoStuff.updateTodoName(current, document.querySelector('#priority').value, 'priority');
+        // toDoStuff.updateTodoName(current, document.querySelector('#project').value, 'project');
         hideForm();
       }, {once: true});
     } if (type === 'project') {

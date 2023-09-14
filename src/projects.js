@@ -87,7 +87,7 @@ export const projectStuff = (() => {
     document.querySelector('#name').value = todo.name;
     document.querySelector('#date').value = todo.date;
     document.querySelector('#priority').value = todo.priority;
-    document.querySelector('#project').value = todo.project;
+    document.querySelector('#project').value = todo.projectName;
     btnActions.showForm(msg, type, todo.name);
   }
 
