@@ -93,11 +93,10 @@ button, .form-container button, .submit {
   column-gap: 10px;
   align-items: center;
   margin: 0px;
-  background-color: white;
+  background: rgba(0,0,0,0);
   color: cornflowerblue;
   font-size: 16px;
-  padding: 0px;
-  padding-left: 10px;
+  padding: 10px 0px;
   cursor: pointer;
 }
 

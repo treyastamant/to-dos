@@ -27,6 +27,7 @@ export const projectStuff = (() => {
       const className = e.replace(/\s+/g, '-').toLowerCase();
       const projectDiv = document.createElement('div');
       projectDiv.className = className;
+      projectDiv.className = "project-div";
       const projectName = document.createElement('h2');
       projectName.classList.add('project-name');
       const editIcon = document.createElement('span');
@@ -36,10 +37,27 @@ export const projectStuff = (() => {
         editAction(`Edit Project Name`, 'edit project', e)
       });
 
+      //todo button
+      const newTodo = document.createElement('button');
+      newTodo.classList.add('add-todo', 'project-button');
+      
+      const buttonTextTodo = 'Add To Do'
+      const newIcon = document.createElement('span');
+      newIcon.classList.add ('material-symbols-outlined', 'edit');
+      newIcon.textContent = 'add';
+
+      newTodo.append(newIcon, buttonTextTodo);
+      newTodo.addEventListener('click', () => {
+        btnActions.showForm('Create New Item', 'todo');
+      });
+
       projectName.textContent = e;
       projectContainer.appendChild(projectDiv);
       projectDiv.appendChild(projectName);
       projectName.appendChild(editIcon);
+      projectDiv.appendChild(newTodo);
+
+      localStorage.setItem("projectList", JSON.stringify(projectList));
       
       toDoStuff.toDos.forEach((t) => {
         if (t.projectName === e) {
@@ -63,15 +81,17 @@ export const projectStuff = (() => {
         }
       })
     })
+
+    //new project button
     const newProject = document.createElement('button');
     newProject.classList.add('project-button');
     
     const buttonText = 'Create New List'
-    const newProjectIcon = document.createElement('span');
-    newProjectIcon.classList.add ('material-symbols-outlined', 'edit');
-    newProjectIcon.textContent = 'add';
-    
-    newProject.append(newProjectIcon, buttonText);
+    const newIcon = document.createElement('span');
+    newIcon.classList.add ('material-symbols-outlined', 'edit');
+    newIcon.textContent = 'add';
+
+    newProject.append(newIcon, buttonText);
     projectContainer.appendChild(newProject);
     newProject.addEventListener('click', () => {
       btnActions.showForm('Create New List', 'project');
