@@ -91,18 +91,6 @@ export const projectStuff = (() => {
     btnActions.showForm(msg, type, todo.name);
   }
 
-  // const displayNestedTodos = (projectName, todo) => {
-  //   const newTodo = document.createElement('p');
-  //   newTodo.textContent = todo;
-  //   projectName.appendChild(todo);
-  // }
-  // const createProjectArray = () => {
-  //   projectList.forEach((e) => {
-  //     e = [];
-  //     console.log(e);
-  //   })
-  // }
-
   //project factory function
   const createProject = (name) => {
     projectList.push(name);

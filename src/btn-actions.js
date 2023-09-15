@@ -11,6 +11,7 @@ export const btnActions = (() => {
   const priority = document.querySelector('.priority');
   const project = document.querySelector('.project-select');
   const submitBtn = document.querySelector('.submit-btn');
+  const cancelBtn = document.querySelector('.cancel-btn');
 
   const showForm = (msg, type, current) => {
     todoBtn.classList.add('hidden');
@@ -18,6 +19,7 @@ export const btnActions = (() => {
     formMessage.textContent = msg;
     formContainer.classList.remove('hidden');
     submitBtn.textContent = "Submit";
+    cancelBtn.textContent = "Cancel";
     if (type === 'todo') {
       showFormInputs();
       submitBtn.addEventListener('click', (e) => {
@@ -31,10 +33,20 @@ export const btnActions = (() => {
       submitBtn.addEventListener('click', (e) => {
         e.preventDefault();
         //update todo item
-        toDoStuff.updateTodoName(current, document.querySelector('#name').value, document.querySelector('#date').value, document.querySelector('#priority').value, document.querySelector('#project').value);
-        // toDoStuff.updateTodoName(current, document.querySelector('#date').value, 'date');
-        // toDoStuff.updateTodoName(current, document.querySelector('#priority').value, 'priority');
-        // toDoStuff.updateTodoName(current, document.querySelector('#project').value, 'project');
+        toDoStuff.updateTodo(current, document.querySelector('#name').value, document.querySelector('#date').value, document.querySelector('#priority').value, document.querySelector('#project').value);
+        hideForm();
+      }, {once: true});
+
+      cancelBtn.textContent = "Delete";
+      cancelBtn.addEventListener('click', (e) => {
+        e.preventDefault();
+        //delete todo item
+        let index = toDoStuff.toDos.map(function (e) {
+          return e.name;
+        }).indexOf(current);
+        toDoStuff.toDos.splice(index, 1);
+        localStorage.setItem("toDos", JSON.stringify(toDoStuff.toDos));
+        projectStuff.displayProject();
         hideForm();
       }, {once: true});
     } if (type === 'project') {
@@ -52,7 +64,20 @@ export const btnActions = (() => {
         projectStuff.updateProject(current, document.querySelector('#name').value);
         hideForm();
       }, {once: true});
-    } 
+
+      cancelBtn.textContent = "Delete";
+      cancelBtn.addEventListener('click', (e) => {
+        e.preventDefault();
+        //delete todo item
+        let index = projectStuff.projectList.map(function (e) {
+          return e.name;
+        }).indexOf(current);
+        projectStuff.projectList.splice(index, 1);
+        localStorage.setItem("projectList", JSON.stringify(projectStuff.projectList));
+        projectStuff.displayProject();
+        hideForm();
+      }, {once: true});
+    }
   }
 
   const showFormInputs = () => {

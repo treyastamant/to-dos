@@ -40,7 +40,7 @@ let toDos = JSON.parse(localStorage.getItem("toDos")) || [];
   
   }
 
-  const updateTodoName = (current, name, date, priority, project) => {
+  const updateTodo = (current, name, date, priority, project) => {
       let index = toDos.map(function (e) {
           return e.name;
       }).indexOf(current);
@@ -52,17 +52,6 @@ let toDos = JSON.parse(localStorage.getItem("toDos")) || [];
     localStorage.setItem("toDos", JSON.stringify(toDos));
     projectStuff.displayProject();
   }
-  
 
-//   const updateTodoDate = (current, updated) => {
-//     let index = toDos.map(function (e) {
-//         return e.name;
-//     }).indexOf(current);
-//   toDos[index].date = updated;
-//   localStorage.setItem("toDos", JSON.stringify(toDos));
-//   projectStuff.displayProject();
-// }
-
-
-  return { createTodo, attachToProject, toDos, updateTodoName };
+  return { createTodo, attachToProject, toDos, updateTodo };
 })();
