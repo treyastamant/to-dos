@@ -63,6 +63,9 @@ export const projectStuff = (() => {
         if (t.projectName === e) {
           const toDoItem = document.createElement('div');
           toDoItem.classList.add('to-do-item');
+
+          const checkbox = document.createElement('input')
+          checkbox.setAttribute("type", "checkbox");
           const toDoName = document.createElement('span');
           toDoName.textContent = t.name;
           const toDoPriority = document.createElement('span');
@@ -77,7 +80,7 @@ export const projectStuff = (() => {
           });
 
           projectDiv.appendChild(toDoItem);
-          toDoItem.append(toDoName, toDoPriority, toDoDate, editIcon);
+          toDoItem.append(checkbox, toDoName, toDoPriority, toDoDate, editIcon);
         }
       })
     })
