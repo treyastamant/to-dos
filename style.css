@@ -115,7 +115,7 @@ button, .form-container button, .submit {
   border-radius: 5px;
   display: grid;
   align-items: center;
-  grid-template-columns: 1fr auto auto auto;
+  grid-template-columns: auto 1fr auto auto auto;
   column-gap: 10px;
 }
 
