@@ -83,6 +83,7 @@ button, .form-container button, .submit {
   row-gap: 20px;
   width: 80%;
   margin: auto;
+  margin-top: 20px;
 }
 
 .project-button {
