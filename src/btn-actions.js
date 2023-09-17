@@ -69,9 +69,7 @@ export const btnActions = (() => {
       cancelBtn.addEventListener('click', (e) => {
         e.preventDefault();
         //delete todo item
-        let index = projectStuff.projectList.map(function (e) {
-          return e.name;
-        }).indexOf(current);
+        let index = projectStuff.projectList.indexOf(current);
         projectStuff.projectList.splice(index, 1);
         localStorage.setItem("projectList", JSON.stringify(projectStuff.projectList));
         projectStuff.displayProject();
