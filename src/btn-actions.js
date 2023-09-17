@@ -22,6 +22,9 @@ export const btnActions = (() => {
     cancelBtn.textContent = "Cancel";
     if (type === 'todo') {
       showFormInputs();
+      const currentProjectIndex = projectStuff.projectList.indexOf(current);
+      document.querySelector('#project').value = projectStuff.projectList[currentProjectIndex];
+
       submitBtn.addEventListener('click', (e) => {
         e.preventDefault();
         toDoStuff.createTodo(document.querySelector('#name').value, document.querySelector('#date').value, document.querySelector('#priority').value, document.querySelector('#project').value);
@@ -104,11 +107,6 @@ export const btnActions = (() => {
       inputs[i].value = "";
     }
   }
-
-  //add todo button show form
-  todoBtn.addEventListener('click', () => {
-    showForm('Add To-do', 'todo');
-  });
   
   return {showForm, hideForm}
 })();

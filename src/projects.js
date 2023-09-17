@@ -24,9 +24,8 @@ export const projectStuff = (() => {
     const projectContainer = document.querySelector('.project-container');
     projectContainer.innerHTML = "";
     projectList.forEach((e) => {
-      const className = e.replace(/\s+/g, '-').toLowerCase();
       const projectDiv = document.createElement('div');
-      projectDiv.className = className;
+      projectDiv.dataset.project = e.replace(/\s+/g, '-').toLowerCase();
       projectDiv.className = "project-div";
       const projectName = document.createElement('h2');
       projectName.classList.add('project-name');
@@ -45,10 +44,11 @@ export const projectStuff = (() => {
       const newIcon = document.createElement('span');
       newIcon.classList.add ('material-symbols-outlined', 'edit');
       newIcon.textContent = 'add';
+      console.log(e)
 
       newTodo.append(newIcon, buttonTextTodo);
       newTodo.addEventListener('click', () => {
-        btnActions.showForm('Create New Item', 'todo');
+        btnActions.showForm('Create New Item', 'todo', e);
       });
 
       projectName.textContent = e;
