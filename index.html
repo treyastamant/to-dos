@@ -19,10 +19,10 @@
   
   <div class="form-container hidden">
     <h3 id="form-message"></h3>
-    <form class="new-entry">
+    <form class="new-entry" id="myForm">
       <div class="name">
         <label for="name">Name</label>
-        <input type="text" name="name" id="name">
+        <input type="text" name="name" id="name" required>
       </div>
       <div class="date">
         <label for="date">Date</label>
@@ -42,7 +42,7 @@
         </select>
       </div>
       <button type="submit" class="submit-btn submit"></button>
-      <button class="cancel-btn"></button>
+      <button type="reset" value="cancel" class="cancel-btn"></button>
     </form>
   </div>
 
