@@ -44,7 +44,6 @@ export const projectStuff = (() => {
       const newIcon = document.createElement('span');
       newIcon.classList.add ('material-symbols-outlined', 'edit');
       newIcon.textContent = 'add';
-      console.log(e)
 
       newTodo.append(newIcon, buttonTextTodo);
       newTodo.addEventListener('click', () => {
@@ -125,7 +124,6 @@ export const projectStuff = (() => {
   }
 
   const updateProject = (currentName, newName) => {
-    console.log(currentName, newName);
     let index = projectList.indexOf(currentName);
     projectList[index] = newName;
     localStorage.setItem("projectList", JSON.stringify(projectList));

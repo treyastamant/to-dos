@@ -2,6 +2,7 @@ import { projectStuff } from "./projects";
 import { btnActions } from "./btn-actions";
 
 export const toDoStuff = (() => {
+  // localStorage.clear();
 let toDos = JSON.parse(localStorage.getItem("toDos")) || [];
   const createTodo = (name, date, priority, projectName) => {
    
@@ -19,7 +20,6 @@ let toDos = JSON.parse(localStorage.getItem("toDos")) || [];
       if (projectName === e) {
         let projectArray;
         projectArray.push(toDo);
-        console.log(projectArray);
         // const className = e.replace(/\s+/g, '-').toLowerCase();
         // console.log(className)
         // const projectName = document.querySelector(`.${className}`);
@@ -35,7 +35,6 @@ let toDos = JSON.parse(localStorage.getItem("toDos")) || [];
       if (projectName === e);
       projectStuff.createProject.e.push(toDo);
         // e.push(toDo);
-        console.log(projectStuff.createProject.projectArray);
     })
   
   }

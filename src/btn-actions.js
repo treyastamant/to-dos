@@ -20,20 +20,30 @@ export const btnActions = (() => {
     formContainer.classList.remove('hidden');
     submitBtn.textContent = "Submit";
     cancelBtn.textContent = "Cancel";
+
+    // cancelBtn.addEventListener('click', (e) => {
+    //   e.preventDefault();
+    //   hideForm();
+    // });
+
     if (type === 'todo') {
       showFormInputs();
       const currentProjectIndex = projectStuff.projectList.indexOf(current);
       document.querySelector('#project').value = projectStuff.projectList[currentProjectIndex];
-
       submitBtn.addEventListener('click', (e) => {
-        e.preventDefault();
-        toDoStuff.createTodo(document.querySelector('#name').value, document.querySelector('#date').value, document.querySelector('#priority').value, document.querySelector('#project').value);
-        hideForm('todo');
+        if (toDoStuff.toDos.includes(document.querySelector('#name'))){
+          e.preventDefault();
+          toDoStuff.createTodo(document.querySelector('#name').value, document.querySelector('#date').value, document.querySelector('#priority').value, document.querySelector('#project').value);
+          hideForm('todo');
+        } else {}
       }, {once: true})
+
+
     } if (type === 'edit todo') {
       showFormInputs();
       submitBtn.textContent = "Update";
       submitBtn.addEventListener('click', (e) => {
+        // document.getElementById('myForm').checkValidity();
         e.preventDefault();
         //update todo item
         toDoStuff.updateTodo(current, document.querySelector('#name').value, document.querySelector('#date').value, document.querySelector('#priority').value, document.querySelector('#project').value);
@@ -55,14 +65,23 @@ export const btnActions = (() => {
     } if (type === 'project') {
       hideFormInputs();
       submitBtn.addEventListener('click', (e) => {
+        console.log(!projectStuff.projectList.includes(document.querySelector('#name').value))
         e.preventDefault();
-        projectStuff.createProject(document.querySelector('#name').value);
-        hideForm();
-      }, {once: true});
+        if (!projectStuff.projectList.includes(document.querySelector('#name').value)) {
+          projectStuff.createProject(document.querySelector('#name').value);
+          hideForm()
+        } else {
+          console.log('error')
+        }
+
+          
+        
+      });
     } if (type === 'edit project') {
       hideFormInputs();
       submitBtn.textContent = "Update";
       submitBtn.addEventListener('click', (e) => {
+        // document.getElementById('myForm').checkValidity();
         e.preventDefault();
         projectStuff.updateProject(current, document.querySelector('#name').value);
         hideForm();
