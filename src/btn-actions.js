@@ -13,39 +13,24 @@ export const btnActions = (() => {
   const submitBtn = document.querySelector('.submit-btn');
   const cancelBtn = document.querySelector('.cancel-btn');
 
-  const showForm = (msg, type, current) => {
-    todoBtn.classList.add('hidden');
-    projectContainer.classList.add('hidden');
-    formMessage.textContent = msg;
-    formContainer.classList.remove('hidden');
-    submitBtn.textContent = "Submit";
-    cancelBtn.textContent = "Cancel";
+  const newToDo = (project) => {
+    showFormInputs();
+    //set project dropdown
+    const currentProjectIndex = projectStuff.projectList.indexOf(project);
+    document.querySelector('#project').value = projectStuff.projectList[currentProjectIndex];
 
-    // cancelBtn.addEventListener('click', (e) => {
-    //   e.preventDefault();
-    //   hideForm();
-    // });
-
-    if (type === 'todo') {
-      showFormInputs();
-      const currentProjectIndex = projectStuff.projectList.indexOf(current);
-      document.querySelector('#project').value = projectStuff.projectList[currentProjectIndex];
-      submitBtn.addEventListener('click', (e) => {
-        if (toDoStuff.toDos.includes(document.querySelector('#name'))){
-          e.preventDefault();
-          toDoStuff.createTodo(document.querySelector('#name').value, document.querySelector('#date').value, document.querySelector('#priority').value, document.querySelector('#project').value);
-          hideForm('todo');
-        } else {}
-      }, {once: true})
-
-
-    } if (type === 'edit todo') {
-      showFormInputs();
+    submitBtn.addEventListener('click', (e) => {
+      e.preventDefault();
+      toDoStuff.createTodo(document.querySelector('#name').value, document.querySelector('#date').value, document.querySelector('#priority').value, document.querySelector('#project').value);
+      hideForm();
+    }, {once: true})
+  } 
+  
+  const editToDo = (current) => { 
+    showFormInputs();
       submitBtn.textContent = "Update";
       submitBtn.addEventListener('click', (e) => {
-        // document.getElementById('myForm').checkValidity();
         e.preventDefault();
-        //update todo item
         toDoStuff.updateTodo(current, document.querySelector('#name').value, document.querySelector('#date').value, document.querySelector('#priority').value, document.querySelector('#project').value);
         hideForm();
       }, {once: true});
@@ -53,52 +38,48 @@ export const btnActions = (() => {
       cancelBtn.textContent = "Delete";
       cancelBtn.addEventListener('click', (e) => {
         e.preventDefault();
-        //delete todo item
-        let index = toDoStuff.toDos.map(function (e) {
-          return e.name;
-        }).indexOf(current);
-        toDoStuff.toDos.splice(index, 1);
+        toDoStuff.toDos.splice(toDoStuff.toDos.indexOf(current), 1);
         localStorage.setItem("toDos", JSON.stringify(toDoStuff.toDos));
         projectStuff.displayProject();
         hideForm();
       }, {once: true});
-    } if (type === 'project') {
-      hideFormInputs();
-      submitBtn.addEventListener('click', (e) => {
-        console.log(!projectStuff.projectList.includes(document.querySelector('#name').value))
-        e.preventDefault();
-        if (!projectStuff.projectList.includes(document.querySelector('#name').value)) {
-          projectStuff.createProject(document.querySelector('#name').value);
-          hideForm()
-        } else {
-          console.log('error')
-        }
+    } 
+    
+    // if (type === 'project') {
+    //   hideFormInputs();
+    //   submitBtn.addEventListener('click', (e) => {
+    //     e.preventDefault();
+    //     projectStuff.createProject(document.querySelector('#name').value);
+    //     hideForm();
+    //   }, {once: true});
+    // } if (type === 'edit project') {
+    //   hideFormInputs();
+    //   submitBtn.textContent = "Update";
+    //   submitBtn.addEventListener('click', (e) => {
+    //     e.preventDefault();
+    //     projectStuff.updateProject(current, document.querySelector('#name').value);
+    //     hideForm();
+    //   }, {once: true});
 
-          
-        
-      });
-    } if (type === 'edit project') {
-      hideFormInputs();
-      submitBtn.textContent = "Update";
-      submitBtn.addEventListener('click', (e) => {
-        // document.getElementById('myForm').checkValidity();
-        e.preventDefault();
-        projectStuff.updateProject(current, document.querySelector('#name').value);
-        hideForm();
-      }, {once: true});
-
-      cancelBtn.textContent = "Delete";
-      cancelBtn.addEventListener('click', (e) => {
-        e.preventDefault();
-        //delete todo item
-        let index = projectStuff.projectList.indexOf(current);
-        projectStuff.projectList.splice(index, 1);
-        localStorage.setItem("projectList", JSON.stringify(projectStuff.projectList));
-        projectStuff.displayProject();
-        hideForm();
-      }, {once: true});
-    }
-  }
+    //   cancelBtn.textContent = "Delete";
+    //   cancelBtn.addEventListener('click', (e) => {
+    //     e.preventDefault();
+    //     //delete todo item
+    //     let index = projectStuff.projectList.indexOf(current);
+    //     projectStuff.projectList.splice(index, 1);
+    //     localStorage.setItem("projectList", JSON.stringify(projectStuff.projectList));
+    //     projectStuff.displayProject();
+    //     hideForm();
+    //   }, {once: true});
+    // }
+  
+    const showForm = (msg) => {
+      projectContainer.classList.add('hidden');
+      formMessage.textContent = msg;
+      formContainer.classList.remove('hidden');
+      submitBtn.textContent = "Submit";
+      cancelBtn.textContent = "Cancel";
+    } 
 
   const showFormInputs = () => {
     date.classList.remove('hidden');
@@ -127,7 +108,7 @@ export const btnActions = (() => {
     }
   }
   
-  return {showForm, hideForm}
+  return {showForm, hideForm, newToDo, editToDo}
 })();
 
   

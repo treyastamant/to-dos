@@ -21,6 +21,7 @@ export const projectStuff = (() => {
 
   //show project name on page
   const displayProject = () => {
+    console.log(projectList, toDoStuff.toDos)
     const projectContainer = document.querySelector('.project-container');
     projectContainer.innerHTML = "";
     projectList.forEach((e) => {
@@ -47,7 +48,8 @@ export const projectStuff = (() => {
 
       newTodo.append(newIcon, buttonTextTodo);
       newTodo.addEventListener('click', () => {
-        btnActions.showForm('Create New Item', 'todo', e);
+        btnActions.showForm('Create New Item')
+        btnActions.newToDo(e);
       });
 
       projectName.textContent = e;
@@ -62,6 +64,7 @@ export const projectStuff = (() => {
         if (t.projectName === e) {
           const toDoItem = document.createElement('div');
           toDoItem.classList.add('to-do-item');
+          toDoItem.setAttribute('id', t.id);
 
           const checkbox = document.createElement('input')
           checkbox.setAttribute("type", "checkbox");
@@ -75,7 +78,12 @@ export const projectStuff = (() => {
           editIcon.classList.add ('material-symbols-outlined', 'edit');
           editIcon.textContent = 'edit';
           editIcon.addEventListener('click', () => {
-            editTodoAction(`Edit To Do`, 'edit todo', t)
+            document.querySelector('#name').value = t.name;
+            document.querySelector('#date').value = t.date;
+            document.querySelector('#priority').value = t.priority;
+            document.querySelector('#project').value = t.projectName;
+            btnActions.showForm('Edit To Do')
+            btnActions.editToDo(t);
           });
 
           projectDiv.appendChild(toDoItem);
@@ -105,13 +113,6 @@ export const projectStuff = (() => {
     btnActions.showForm(msg, type, name);
   }
 
-  const editTodoAction = (msg, type, todo) => {
-    document.querySelector('#name').value = todo.name;
-    document.querySelector('#date').value = todo.date;
-    document.querySelector('#priority').value = todo.priority;
-    document.querySelector('#project').value = todo.projectName;
-    btnActions.showForm(msg, type, todo.name);
-  }
 
   //project factory function
   const createProject = (name) => {
@@ -124,6 +125,7 @@ export const projectStuff = (() => {
   }
 
   const updateProject = (currentName, newName) => {
+    console.log(currentName, newName);
     let index = projectList.indexOf(currentName);
     projectList[index] = newName;
     localStorage.setItem("projectList", JSON.stringify(projectList));
