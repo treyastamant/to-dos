@@ -43,6 +43,15 @@ export const btnActions = (() => {
         hideForm();
       }, {once: true});
     } 
+
+    const newProject = () => {
+      hideFormInputs();
+      submitBtn.addEventListener('click', (e) => {
+        e.preventDefault();
+        projectStuff.createProject(document.querySelector('#name').value);
+        hideForm();
+      }, {once: true})
+    } 
     
     // if (type === 'project') {
     //   hideFormInputs();
@@ -107,7 +116,7 @@ export const btnActions = (() => {
     projectContainer.classList.remove('hidden');
   }
   
-  return {showForm, hideForm, newToDo, editToDo}
+  return {showForm, hideForm, newToDo, editToDo, newProject}
 })();
 
   

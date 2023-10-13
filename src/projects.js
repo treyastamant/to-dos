@@ -102,7 +102,8 @@ export const projectStuff = (() => {
     newProject.append(newIcon, buttonText);
     projectContainer.appendChild(newProject);
     newProject.addEventListener('click', () => {
-      btnActions.showForm('Create New List', 'project');
+      btnActions.showForm('Create New List');
+      btnActions.newProject();
     });
   }
 
