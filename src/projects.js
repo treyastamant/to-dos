@@ -21,7 +21,6 @@ export const projectStuff = (() => {
 
   //show project name on page
   const displayProject = () => {
-    console.log(projectList, toDoStuff.toDos)
     const projectContainer = document.querySelector('.project-container');
     projectContainer.innerHTML = "";
     projectList.forEach((e) => {
@@ -50,7 +49,7 @@ export const projectStuff = (() => {
       newTodo.addEventListener('click', () => {
         btnActions.showForm('Create New Item')
         btnActions.newToDo(e);
-      });
+      }, {once: true});
 
       projectName.textContent = e;
       projectContainer.appendChild(projectDiv);
@@ -65,7 +64,6 @@ export const projectStuff = (() => {
           const toDoItem = document.createElement('div');
           toDoItem.classList.add('to-do-item');
           toDoItem.setAttribute('id', t.id);
-
           const checkbox = document.createElement('input')
           checkbox.setAttribute("type", "checkbox");
           const toDoName = document.createElement('span');

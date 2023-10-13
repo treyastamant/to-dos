@@ -4,7 +4,6 @@ import { btnActions } from "./btn-actions";
 export const toDoStuff = (() => {
 let toDos = JSON.parse(localStorage.getItem("toDos")) || [];
   const createTodo = (name, date, priority, projectName) => {
-  
     let toDo = {name, date, priority, projectName, id:new Date().getTime()};
     toDos.push(toDo);
     localStorage.setItem("toDos", JSON.stringify(toDos));
@@ -40,13 +39,10 @@ let toDos = JSON.parse(localStorage.getItem("toDos")) || [];
   // }
 
   const updateTodo = (current, name, date, priority, project) => {
-      // let index = toDos.map(function (e) {
-      //     return e.id;
-      // }).indexOf(current);
-        current.name = name;
-        current.date = date;
-        current.priority = priority;
-        current.projectName = project;
+    current.name = name;
+    current.date = date;
+    current.priority = priority;
+    current.projectName = project;
   
     localStorage.setItem("toDos", JSON.stringify(toDos));
     projectStuff.displayProject();

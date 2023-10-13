@@ -15,12 +15,11 @@ export const btnActions = (() => {
 
   const newToDo = (project) => {
     showFormInputs();
-    //set project dropdown
-    const currentProjectIndex = projectStuff.projectList.indexOf(project);
-    document.querySelector('#project').value = projectStuff.projectList[currentProjectIndex];
+    document.querySelector('#project').value = project;
 
     submitBtn.addEventListener('click', (e) => {
       e.preventDefault();
+      console.log(document.querySelectorAll('#name'), document.querySelector('#date').value, document.querySelector('#priority').value, document.querySelector('#project').value);
       toDoStuff.createTodo(document.querySelector('#name').value, document.querySelector('#date').value, document.querySelector('#priority').value, document.querySelector('#project').value);
       hideForm();
     }, {once: true})
@@ -28,12 +27,12 @@ export const btnActions = (() => {
   
   const editToDo = (current) => { 
     showFormInputs();
-      submitBtn.textContent = "Update";
-      submitBtn.addEventListener('click', (e) => {
-        e.preventDefault();
-        toDoStuff.updateTodo(current, document.querySelector('#name').value, document.querySelector('#date').value, document.querySelector('#priority').value, document.querySelector('#project').value);
-        hideForm();
-      }, {once: true});
+    submitBtn.textContent = "Update";
+    submitBtn.addEventListener('click', (e) => {
+      e.preventDefault();
+      toDoStuff.updateTodo(current, document.querySelector('#name').value, document.querySelector('#date').value, document.querySelector('#priority').value, document.querySelector('#project').value);
+      hideForm();
+    }, {once: true});
 
       cancelBtn.textContent = "Delete";
       cancelBtn.addEventListener('click', (e) => {
@@ -74,6 +73,14 @@ export const btnActions = (() => {
     // }
   
     const showForm = (msg) => {
+       //reset priority and project
+      document.querySelector('#priority').selectedIndex = 0;
+      document.querySelector('#project').selectedIndex = 0;
+      // reset inputs
+      let inputs = document.querySelectorAll('input');
+      for (let i = 0; i < inputs.length; i++) {
+        inputs[i].value = "";
+      }
       projectContainer.classList.add('hidden');
       formMessage.textContent = msg;
       formContainer.classList.remove('hidden');
@@ -98,14 +105,6 @@ export const btnActions = (() => {
     formMessage.textContent = "";
     formContainer.classList.add('hidden');
     projectContainer.classList.remove('hidden');
-    //reset priority and project
-    document.querySelector('#priority').selectedIndex = 0;
-    document.querySelector('#project').selectedIndex = 0;
-    //reset inputs
-    let inputs = document.querySelectorAll('input');
-    for (let i = 0; i < inputs.length; i++) {
-      inputs[i].value = "";
-    }
   }
   
   return {showForm, hideForm, newToDo, editToDo}
