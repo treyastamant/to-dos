@@ -123,17 +123,11 @@ export const projectStuff = (() => {
     localStorage.setItem("projectList", JSON.stringify(projectList));
 
     populateProjectDropDown();
-    displayProject();
-    // createProjectArray();
   }
 
   const updateProject = (current, newName) => {
-    // let index = projectList.indexOf(current);
-    
     current.name = newName;
-    // console.log(current)
     localStorage.setItem("projectList", JSON.stringify(projectList));
-    displayProject();
     populateProjectDropDown();
   }
       

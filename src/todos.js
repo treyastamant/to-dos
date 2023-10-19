@@ -8,7 +8,6 @@ let toDos = JSON.parse(localStorage.getItem("toDos")) || [];
     let toDo = {name, date, priority, projectId, id:new Date().getTime()};
     toDos.push(toDo);
     localStorage.setItem("toDos", JSON.stringify(toDos));
-    projectStuff.displayProject();
     return {toDos};
   }
 
@@ -22,7 +21,6 @@ let toDos = JSON.parse(localStorage.getItem("toDos")) || [];
     current.projectId = projectId;
   
     localStorage.setItem("toDos", JSON.stringify(toDos));
-    projectStuff.displayProject();
   }
 
   return { createTodo, toDos, updateTodo };
