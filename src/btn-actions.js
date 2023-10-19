@@ -10,38 +10,57 @@ export const btnActions = (() => {
   const date = document.querySelector('.date');
   const priority = document.querySelector('.priority');
   const project = document.querySelector('.project-select');
-  const submitBtn = document.querySelector('.submit-btn');
-  const cancelBtn = document.querySelector('.cancel-btn');
   const buttons = document.querySelector('.buttons');
 
   const newToDo = (project) => {
     showFormInputs();
     document.querySelector('#project').value = project.id;
-   
-    submitBtn.addEventListener('click', (e) => {
+
+    const subBtn = document.createElement('button');
+    subBtn.textContent = "Submit";
+    subBtn.addEventListener('click', (e) => {
       e.preventDefault();
       toDoStuff.createTodo(document.querySelector('#name').value, document.querySelector('#date').value, document.querySelector('#priority').value, document.querySelector('#project').value);
       hideForm();
     }, {once: true})
+    buttons.appendChild(subBtn);
+
+    const cancelBtn = document.createElement('button');
+    cancelBtn.textContent = "Cancel"
+    cancelBtn.addEventListener('click', (e) => {
+      e.preventDefault();
+      hideForm();
+      projectStuff.displayProject();
+    }, {once: true});
+    buttons.appendChild(cancelBtn);
   } 
   
   const editToDo = (current) => { 
     showFormInputs();
-    submitBtn.textContent = "Update";
-    submitBtn.addEventListener('click', (e) => {
+    document.querySelector('#name').value = current.name;
+    document.querySelector('#date').value = current.date;
+    document.querySelector('#priority').value = current.priority;
+    document.querySelector('#project').value = current.projectId;
+
+    const subBtn = document.createElement('button');
+    subBtn.textContent = "Update";
+    subBtn.addEventListener('click', (e) => {
       e.preventDefault();
       toDoStuff.updateTodo(current, document.querySelector('#name').value, document.querySelector('#date').value, document.querySelector('#priority').value, document.querySelector('#project').value);
       hideForm();
     }, {once: true});
+    buttons.appendChild(subBtn);
 
-      cancelBtn.textContent = "Delete";
-      cancelBtn.addEventListener('click', (e) => {
-        e.preventDefault();
-        toDoStuff.toDos.splice(toDoStuff.toDos.indexOf(current), 1);
-        localStorage.setItem("toDos", JSON.stringify(toDoStuff.toDos));
-        projectStuff.displayProject();
-        hideForm();
-      }, {once: true});
+    const deleteBtn = document.createElement('button');
+    deleteBtn.textContent = "Delete"
+    deleteBtn.addEventListener('click', (e) => {
+      e.preventDefault();
+      toDoStuff.toDos.splice(toDoStuff.toDos.indexOf(current), 1);
+      localStorage.setItem("toDos", JSON.stringify(toDoStuff.toDos));
+      projectStuff.displayProject();
+      hideForm();
+    }, {once: true});
+    buttons.appendChild(deleteBtn);
   } 
 
     const newProject = () => {
@@ -54,6 +73,15 @@ export const btnActions = (() => {
         hideForm();
       }, {once: true})
       buttons.appendChild(subBtn)
+
+      const cancelBtn = document.createElement('button');
+      cancelBtn.textContent = "Cancel"
+      cancelBtn.addEventListener('click', (e) => {
+        e.preventDefault();
+        hideForm();
+        projectStuff.displayProject();
+      }, {once: true});
+      buttons.appendChild(cancelBtn);
     } 
 
     const editProject = (current) => { 
@@ -77,8 +105,6 @@ export const btnActions = (() => {
     }
 
     const deleteProject = (e, current) => {
-      console.log(current, "current")
-      console.log(projectStuff.projectList)
       e.preventDefault();
       //running multiple times
       projectStuff.projectList.splice(projectStuff.projectList.indexOf(current), 1);

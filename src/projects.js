@@ -22,16 +22,9 @@ export const projectStuff = (() => {
 
   //show project name on page
   const displayProject = () => {
-    // const projectContainer1 = document.querySelector('.project-container');
-    // projectContainer1.replaceWith(projectContainer1.cloneNode(true));
-    
     const projectContainer = document.querySelector('.project-container');
     projectContainer.innerHTML = "";
-    
-    // refreshEventListeners();
-    //     const projectContainer = projectContainer1.cloneNode(true);
-// projectContainer1.parentNode.replaceChild(projectContainer, projectContainer1);
-
+  
     projectList.forEach((e) => {
       const projectDiv = document.createElement('div');
       // projectDiv.dataset.project = e.replace(/\s+/g, '-').toLowerCase();
@@ -48,7 +41,7 @@ export const projectStuff = (() => {
 
       //todo button
       const newTodo = document.createElement('button');
-      newTodo.classList.add('add-todo', 'project-button');
+      newTodo.classList.add('add-todo', 'project-icon');
       
       const buttonTextTodo = 'Add To Do'
       const newIcon = document.createElement('span');
@@ -68,8 +61,10 @@ export const projectStuff = (() => {
       projectDiv.appendChild(newTodo);
 
       localStorage.setItem("projectList", JSON.stringify(projectList));
+      
       toDoStuff.toDos.forEach((t) => {
-        if (t.projectName === e.id) {
+        
+        if (t.projectId === e.id) {
           const toDoItem = document.createElement('div');
           toDoItem.classList.add('to-do-item');
           toDoItem.setAttribute('id', t.id);
@@ -85,10 +80,6 @@ export const projectStuff = (() => {
           editIcon.classList.add ('material-symbols-outlined', 'edit');
           editIcon.textContent = 'edit';
           editIcon.addEventListener('click', () => {
-            document.querySelector('#name').value = t.name;
-            document.querySelector('#date').value = t.date;
-            document.querySelector('#priority').value = t.priority;
-            document.querySelector('#project').value = t.projectName;
             btnActions.showForm('Edit To Do')
             btnActions.editToDo(t);
           });
@@ -102,7 +93,7 @@ export const projectStuff = (() => {
 
     //new project button
     const newProject = document.createElement('button');
-    newProject.classList.add('project-button');
+    newProject.classList.add('project-icon');
     
     const buttonText = 'Create New List'
     const newIcon = document.createElement('span');
@@ -140,7 +131,7 @@ export const projectStuff = (() => {
     // let index = projectList.indexOf(current);
     
     current.name = newName;
-    console.log(current)
+    // console.log(current)
     localStorage.setItem("projectList", JSON.stringify(projectList));
     displayProject();
     populateProjectDropDown();
