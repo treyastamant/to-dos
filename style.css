@@ -1,4 +1,9 @@
 
+:root {
+  --dark-blue: #47649b;
+  --blue: #6495ed;
+  --off-white: #f7f7f7;
+}
 
 body {
   font-family: 'Nunito', sans-serif;
@@ -13,10 +18,12 @@ h1 {
   margin-top: 30px;
 }
 
+/* form styles */
 .form-container {
-  background-color: #f7f7f7;
+  background-color: var(--off-white);
   width: 500px;
   margin: auto;
+  margin-top: 10px;
   display: grid;
   row-gap: 10px;
   border-radius: 10px;
@@ -30,7 +37,7 @@ h1 {
 #form-message {
   font-size: 24px;
   text-align: center;
-  background-color: #808000;
+  background-color: var(--dark-blue);
   color: white;
   padding: 8px;
   border-radius: 10px 10px 0 0;
@@ -41,7 +48,7 @@ form {
   row-gap: 15px;
 }
 
-.name, .description {
+.name {
   display: grid;
   row-gap: 2px;
   padding: 0 20px;
@@ -59,25 +66,31 @@ form select, form input {
   height: 25px;
 }
 
-.add-buttons {
+
+/* button styles */
+.buttons {
   display: grid;
   grid-template-columns: auto auto;
-  margin: 20px auto;
   justify-content: center;
 }
 
+.buttons button:hover {
+  cursor: pointer;
+  background-color: var(--dark-blue);
+}
 
-button, .form-container button, .submit {
+button, .form-container button {
   margin: 10px 20px 20px;
   padding: 10px 50px;
   width: auto;
   justify-self: center;
-  background-color: #808000;
+  background-color: var(--blue);
   color: white;
   border: none;
   border-radius: 10px;
 }
 
+/* project/todo display styles */
 .project-container {
   display: grid;
   row-gap: 20px;
@@ -86,7 +99,7 @@ button, .form-container button, .submit {
   margin-top: 20px;
 }
 
-.project-button {
+.project-icon {
   display: grid;
   grid-template-columns: auto 1fr;
   justify-self: start;
@@ -95,20 +108,15 @@ button, .form-container button, .submit {
   align-items: center;
   margin: 0px;
   background: rgba(0,0,0,0);
-  color: cornflowerblue;
+  color: var(--blue);
   font-size: 16px;
   padding: 10px 0px;
   cursor: pointer;
 }
 
-
-
-
 .project-container h2 { 
   text-align: left;
 }
-
-
 
 .to-do-item {
   background-color: white;
@@ -128,7 +136,7 @@ button, .form-container button, .submit {
 .to-do-item .edit {
   margin-left: 10px;
   font-size: 21px;
-  color:cornflowerblue;
+  color:var(--blue);
   cursor: pointer;
 }
 
@@ -137,16 +145,16 @@ button, .form-container button, .submit {
   margin-left: 10px;
   font-size: 24px;
   text-align: center;
-  color:cornflowerblue;
+  color:var(--blue);
   cursor: pointer;
 }
 
 .project-button:hover, .edit:hover {
-  color: rgb(52, 113, 226);
+  color: var(--dark-blue);
   }
 
 .project-container div {
-  background-color: #f7f7f7;
+  background-color: var(--off-white);
   padding: 10px 10px;
   border-radius: 10px;
 }
@@ -158,7 +166,7 @@ button, .form-container button, .submit {
 
 
 @media only screen and (max-width: 600px) {
-  .add-buttons {
+  .buttons {
     display: grid;
     grid-template-columns: 1fr;
     justify-content: center;
