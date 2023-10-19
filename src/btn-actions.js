@@ -12,14 +12,14 @@ export const btnActions = (() => {
   const project = document.querySelector('.project-select');
   const submitBtn = document.querySelector('.submit-btn');
   const cancelBtn = document.querySelector('.cancel-btn');
+  const buttons = document.querySelector('.buttons');
 
   const newToDo = (project) => {
     showFormInputs();
-    document.querySelector('#project').value = project;
-
+    document.querySelector('#project').value = project.id;
+   
     submitBtn.addEventListener('click', (e) => {
       e.preventDefault();
-      console.log(document.querySelectorAll('#name'), document.querySelector('#date').value, document.querySelector('#priority').value, document.querySelector('#project').value);
       toDoStuff.createTodo(document.querySelector('#name').value, document.querySelector('#date').value, document.querySelector('#priority').value, document.querySelector('#project').value);
       hideForm();
     }, {once: true})
@@ -42,46 +42,55 @@ export const btnActions = (() => {
         projectStuff.displayProject();
         hideForm();
       }, {once: true});
-    } 
+  } 
 
     const newProject = () => {
       hideFormInputs();
-      submitBtn.addEventListener('click', (e) => {
+      const subBtn = document.createElement('button');
+      subBtn.textContent = "Submit";
+      subBtn.addEventListener('click', (e) => {
         e.preventDefault();
         projectStuff.createProject(document.querySelector('#name').value);
         hideForm();
       }, {once: true})
+      buttons.appendChild(subBtn)
     } 
-    
-    // if (type === 'project') {
-    //   hideFormInputs();
-    //   submitBtn.addEventListener('click', (e) => {
-    //     e.preventDefault();
-    //     projectStuff.createProject(document.querySelector('#name').value);
-    //     hideForm();
-    //   }, {once: true});
-    // } if (type === 'edit project') {
-    //   hideFormInputs();
-    //   submitBtn.textContent = "Update";
-    //   submitBtn.addEventListener('click', (e) => {
-    //     e.preventDefault();
-    //     projectStuff.updateProject(current, document.querySelector('#name').value);
-    //     hideForm();
-    //   }, {once: true});
 
-    //   cancelBtn.textContent = "Delete";
-    //   cancelBtn.addEventListener('click', (e) => {
-    //     e.preventDefault();
-    //     //delete todo item
-    //     let index = projectStuff.projectList.indexOf(current);
-    //     projectStuff.projectList.splice(index, 1);
-    //     localStorage.setItem("projectList", JSON.stringify(projectStuff.projectList));
-    //     projectStuff.displayProject();
-    //     hideForm();
-    //   }, {once: true});
-    // }
+    const editProject = (current) => { 
+      hideFormInputs();
+      document.querySelector('#name').value = current.name;
+      
+      const subBtn = document.createElement('button');
+      subBtn.textContent = "Update";
+      subBtn.addEventListener('click', (e) => {
+        e.preventDefault();
+        projectStuff.updateProject(current, document.querySelector('#name').value);
+        console.log(projectStuff.projectList)
+        hideForm();
+      }, {once: true});
+      buttons.appendChild(subBtn);
+      
+      const deleteBtn = document.createElement('button');
+      deleteBtn.textContent = "Delete"
+      deleteBtn.addEventListener('click', (e) => deleteProject(e, current), {once: true});
+      buttons.appendChild(deleteBtn);
+    }
+
+    const deleteProject = (e, current) => {
+      console.log(current, "current")
+      console.log(projectStuff.projectList)
+      e.preventDefault();
+      //running multiple times
+      projectStuff.projectList.splice(projectStuff.projectList.indexOf(current), 1);
+      console.log(projectStuff.projectList)
+      localStorage.setItem("projectList", JSON.stringify(projectStuff.projectList));
+      projectStuff.displayProject();
+      hideForm();
+    }
   
+
     const showForm = (msg) => {
+      buttons.innerHTML = "";
        //reset priority and project
       document.querySelector('#priority').selectedIndex = 0;
       document.querySelector('#project').selectedIndex = 0;
@@ -93,8 +102,8 @@ export const btnActions = (() => {
       projectContainer.classList.add('hidden');
       formMessage.textContent = msg;
       formContainer.classList.remove('hidden');
-      submitBtn.textContent = "Submit";
-      cancelBtn.textContent = "Cancel";
+      // submitBtn.textContent = "Submit";
+      // cancelBtn.textContent = "Cancel";
     } 
 
   const showFormInputs = () => {
@@ -107,6 +116,7 @@ export const btnActions = (() => {
     date.classList.add('hidden');
     priority.classList.add('hidden');
     project.classList.add('hidden');
+    // cancelBtn.classList.add('hidden')
   }
 
   const hideForm = () => {
@@ -116,7 +126,7 @@ export const btnActions = (() => {
     projectContainer.classList.remove('hidden');
   }
   
-  return {showForm, hideForm, newToDo, editToDo, newProject}
+  return {showForm, hideForm, newToDo, editToDo, newProject, editProject, deleteProject}
 })();
 
   

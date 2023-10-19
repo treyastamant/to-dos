@@ -3,7 +3,7 @@ import { toDoStuff } from "./todos";
 
 export const projectStuff = (() => {
   // localStorage.clear();
-  const projectList = JSON.parse(localStorage.getItem("projectList")) || ['Personal'];
+  const projectList = JSON.parse(localStorage.getItem("projectList")) || [{name:'Personal', id:1}];
   
   
   //add project to drop-down
@@ -12,20 +12,29 @@ export const projectStuff = (() => {
     projectSelect.innerHTML = "";
     projectList.forEach((e) => {
       const projectOption = document.createElement('option');
-      projectOption.setAttribute('value', e);
+      projectOption.value = e.id;
+      projectOption.setAttribute('dataset', e.id);
       projectOption.classList.add('project-option');
-      projectOption.textContent = e;
+      projectOption.textContent = e.name;
       projectSelect.appendChild(projectOption);
     });
   }
 
   //show project name on page
   const displayProject = () => {
+    // const projectContainer1 = document.querySelector('.project-container');
+    // projectContainer1.replaceWith(projectContainer1.cloneNode(true));
+    
     const projectContainer = document.querySelector('.project-container');
     projectContainer.innerHTML = "";
+    
+    // refreshEventListeners();
+    //     const projectContainer = projectContainer1.cloneNode(true);
+// projectContainer1.parentNode.replaceChild(projectContainer, projectContainer1);
+
     projectList.forEach((e) => {
       const projectDiv = document.createElement('div');
-      projectDiv.dataset.project = e.replace(/\s+/g, '-').toLowerCase();
+      // projectDiv.dataset.project = e.replace(/\s+/g, '-').toLowerCase();
       projectDiv.className = "project-div";
       const projectName = document.createElement('h2');
       projectName.classList.add('project-name');
@@ -33,8 +42,9 @@ export const projectStuff = (() => {
       editIcon.classList.add ('material-symbols-outlined', 'edit');
       editIcon.textContent = 'edit';
       editIcon.addEventListener('click', () => {
-        editAction(`Edit Project Name`, 'edit project', e)
-      });
+        btnActions.showForm(`Edit Project Name`);
+        btnActions.editProject(e);
+      }, {once: true});
 
       //todo button
       const newTodo = document.createElement('button');
@@ -51,16 +61,15 @@ export const projectStuff = (() => {
         btnActions.newToDo(e);
       }, {once: true});
 
-      projectName.textContent = e;
+      projectName.textContent = e.name;
       projectContainer.appendChild(projectDiv);
       projectDiv.appendChild(projectName);
       projectName.appendChild(editIcon);
       projectDiv.appendChild(newTodo);
 
       localStorage.setItem("projectList", JSON.stringify(projectList));
-      
       toDoStuff.toDos.forEach((t) => {
-        if (t.projectName === e) {
+        if (t.projectName === e.id) {
           const toDoItem = document.createElement('div');
           toDoItem.classList.add('to-do-item');
           toDoItem.setAttribute('id', t.id);
@@ -88,6 +97,7 @@ export const projectStuff = (() => {
           toDoItem.append(checkbox, toDoName, toDoPriority, toDoDate, editIcon);
         }
       })
+      
     })
 
     //new project button
@@ -105,17 +115,20 @@ export const projectStuff = (() => {
       btnActions.showForm('Create New List');
       btnActions.newProject();
     });
+    
   }
 
-  const editAction = (msg, type, name) => {
-    document.querySelector('#name').value = name;
-    btnActions.showForm(msg, type, name);
+  const refreshEventListeners = () => {
+    const cancelBtn = document.querySelector(".cancel-btn");
+    cancelBtn.removeEventListener('click', (e) => btnActions.deleteProject(e, current), {once: true});
+    
   }
 
 
   //project factory function
   const createProject = (name) => {
-    projectList.push(name);
+    const project = {name, id:new Date().getTime()}
+    projectList.push(project);
     localStorage.setItem("projectList", JSON.stringify(projectList));
 
     populateProjectDropDown();
@@ -123,10 +136,11 @@ export const projectStuff = (() => {
     // createProjectArray();
   }
 
-  const updateProject = (currentName, newName) => {
-    console.log(currentName, newName);
-    let index = projectList.indexOf(currentName);
-    projectList[index] = newName;
+  const updateProject = (current, newName) => {
+    // let index = projectList.indexOf(current);
+    
+    current.name = newName;
+    console.log(current)
     localStorage.setItem("projectList", JSON.stringify(projectList));
     displayProject();
     populateProjectDropDown();
