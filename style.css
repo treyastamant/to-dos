@@ -26,7 +26,7 @@ h1 {
   margin-top: 10px;
   display: grid;
   row-gap: 10px;
-  border-radius: 10px;
+  border-radius: 7px;
 }
 
 .form-container * {
@@ -52,6 +52,7 @@ form {
   display: grid;
   row-gap: 2px;
   padding: 0 20px;
+  border: 0px;
 }
 
 .date, .priority, .project-select {
@@ -64,6 +65,17 @@ form select, form input {
   padding: 10px;
   text-indent: 3px;
   height: 25px;
+}
+
+.required {
+  border-width: 1px;
+  height: 27px;
+  border-color: rgb(205, 67, 67);
+  border-style: solid;
+}
+
+.checkbox:checked + span {
+  text-decoration:line-through
 }
 
 
@@ -162,7 +174,6 @@ button, .form-container button {
 .hidden {
   display: none;
 }
-
 
 
 @media only screen and (max-width: 600px) {
