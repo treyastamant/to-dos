@@ -1,6 +1,3 @@
-import { projectStuff } from "./projects";
-import { btnActions } from "./btn-actions";
-
 export const toDoStuff = (() => {
 let toDos = JSON.parse(localStorage.getItem("toDos")) || [];
   const createTodo = (name, date, priority, pId) => {
@@ -11,10 +8,8 @@ let toDos = JSON.parse(localStorage.getItem("toDos")) || [];
     return {toDos};
   }
 
-
   const updateTodo = (current, name, date, priority, project) => {
     let projectId = parseInt(project);
-
     current.name = name;
     current.date = date;
     current.priority = priority;

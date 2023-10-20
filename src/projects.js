@@ -5,7 +5,6 @@ export const projectStuff = (() => {
   // localStorage.clear();
   const projectList = JSON.parse(localStorage.getItem("projectList")) || [{name:'Personal', id:1}];
   
-  
   //add project to drop-down
   const populateProjectDropDown = () => {
     const projectSelect = document.getElementById('project');
@@ -26,8 +25,7 @@ export const projectStuff = (() => {
     projectContainer.innerHTML = "";
   
     projectList.forEach((e) => {
-      const projectDiv = document.createElement('div');
-      // projectDiv.dataset.project = e.replace(/\s+/g, '-').toLowerCase();
+      const projectDiv = document.createElement('div'); 
       projectDiv.className = "project-div";
       const projectName = document.createElement('h2');
       projectName.classList.add('project-name');
@@ -62,14 +60,14 @@ export const projectStuff = (() => {
 
       localStorage.setItem("projectList", JSON.stringify(projectList));
       
-      toDoStuff.toDos.forEach((t) => {
-        
+      toDoStuff.toDos.forEach((t) => {  
         if (t.projectId === e.id) {
           const toDoItem = document.createElement('div');
           toDoItem.classList.add('to-do-item');
           toDoItem.setAttribute('id', t.id);
           const checkbox = document.createElement('input')
           checkbox.setAttribute("type", "checkbox");
+          checkbox.setAttribute("class", "checkbox");
           const toDoName = document.createElement('span');
           toDoName.textContent = t.name;
           const toDoPriority = document.createElement('span');
@@ -88,7 +86,6 @@ export const projectStuff = (() => {
           toDoItem.append(checkbox, toDoName, toDoPriority, toDoDate, editIcon);
         }
       })
-      
     })
 
     //new project button
@@ -106,22 +103,12 @@ export const projectStuff = (() => {
       btnActions.showForm('Create New List');
       btnActions.newProject();
     });
-    
   }
 
-  const refreshEventListeners = () => {
-    const cancelBtn = document.querySelector(".cancel-btn");
-    cancelBtn.removeEventListener('click', (e) => btnActions.deleteProject(e, current), {once: true});
-    
-  }
-
-
-  //project factory function
   const createProject = (name) => {
     const project = {name, id:new Date().getTime()}
     projectList.push(project);
     localStorage.setItem("projectList", JSON.stringify(projectList));
-
     populateProjectDropDown();
   }
 

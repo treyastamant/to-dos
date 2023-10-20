@@ -20,8 +20,12 @@ export const btnActions = (() => {
     subBtn.textContent = "Submit";
     subBtn.addEventListener('click', (e) => {
       e.preventDefault();
-      toDoStuff.createTodo(document.querySelector('#name').value, document.querySelector('#date').value, document.querySelector('#priority').value, document.querySelector('#project').value);
-      hideForm();
+      if (document.querySelector('#name').value) {
+        toDoStuff.createTodo(document.querySelector('#name').value, document.querySelector('#date').value, document.querySelector('#priority').value, document.querySelector('#project').value);
+        hideForm();
+      } else {
+        document.querySelector('#name').classList.add("required");
+      }
     })
     buttons.appendChild(subBtn);
 
@@ -67,8 +71,12 @@ export const btnActions = (() => {
     subBtn.textContent = "Submit";
     subBtn.addEventListener('click', (e) => {
       e.preventDefault();
-      projectStuff.createProject(document.querySelector('#name').value);
-      hideForm();
+      if (document.querySelector('#name').value) {
+        projectStuff.createProject(document.querySelector('#name').value);
+        hideForm();
+      } else {
+        document.querySelector('#name').classList.add("required");
+      }
     })
     buttons.appendChild(subBtn)
 
@@ -107,6 +115,7 @@ export const btnActions = (() => {
   
   const showForm = (msg) => {
     buttons.innerHTML = "";
+    document.querySelector('#name').classList.remove("required");
       //reset priority and project
     document.querySelector('#priority').selectedIndex = 0;
     document.querySelector('#project').selectedIndex = 0;
